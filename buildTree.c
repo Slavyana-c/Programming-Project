@@ -42,3 +42,24 @@ void makeChildren( Node *parent ) {
 
   return;
 }
+
+void growTree( Node *node, int maxLvl ) {
+  int i;
+
+  if( node->child[0] == NULL) {
+    if(node->level < maxLvl){
+      makeChildren(node);
+    }
+    else return;
+    }
+
+  else {
+    for ( i=0; i<4; ++i ) {
+        growTree (node->child[i], maxLvl);
+      }
+  }
+
+
+  return;
+
+}
