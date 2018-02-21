@@ -14,8 +14,8 @@ int main( int argc, char **argv ) {
   Node *head;
   head = makeNode( 0.0,0.0, 0 );
 
-  task1(head, 2);
-  task2(head, 1);
+  //task1(head, 2);
+  task2(head, 2);
 
   // make the head node
   //head = makeNode( 0.0,0.0, 0 );
