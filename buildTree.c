@@ -6,6 +6,7 @@
 #include "treeStructure.h"
 #include "buildTree.h"
 #include "writeTree.h"
+#include "test.h"
 
 Node *makeNode( double x, double y, int level ) {
 
@@ -47,7 +48,7 @@ void growTree( Node *node, int maxLvl ) {
   int i;
 
   if( node->child[0] == NULL) {
-    if(node->level < maxLvl){
+    if(node->level <= maxLvl){
       makeChildren(node);
     }
     else return;

@@ -5,6 +5,7 @@
 #include "treeStructure.h"
 #include "buildTree.h"
 #include "writeTree.h"
+#include "test.h"
 
 // write out the tree to file 'quad.out'
 void writeTree( Node *head ) {

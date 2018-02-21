@@ -5,31 +5,39 @@
 #include "treeStructure.h"
 #include "buildTree.h"
 #include "writeTree.h"
+#include "test.h"
 
 // main
 
 int main( int argc, char **argv ) {
 
   Node *head;
+  head = makeNode( 0.0,0.0, 0 );
+
+  task1(head, 2);
+  task2(head, 1);
 
   // make the head node
-  head = makeNode( 0.0,0.0, 0 );
+  //head = makeNode( 0.0,0.0, 0 );
 
   // make a tree
 
-  makeChildren( head );
+//  makeChildren( head );
+
+
 //  makeChildren( head->child[1] );
-  makeChildren( head->child[2] );
-  makeChildren( (head->child[2]) -> child[3] );
+//  makeChildren( head->child[2] );
+  //makeChildren( (head->child[2]) -> child[3] );
 
-  int i;
-  for (i = 0; i < 1; i++) {
-    growTree(head, 3);
-  }
+//  int i;
+//  for (i = 0; i < 5; i++) {
+//    growTree(head, 3);
+//  }
 
 
 
-//  growTree(head);
+//  growTree(head,2);
+//  growTree(head,2);
 
 
 
