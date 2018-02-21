@@ -1,8 +1,13 @@
 
+#include "stdio.h"
 #include "math.h"
+#include "stdlib.h"
 #include "stdbool.h"
 
-#include  "quadtree.h"
+#include "treeStructure.h"
+#include "buildTree.h"
+#include "writeTree.h"
+#include "test.h"
 #include  "valueTree.h"
 
 #define MAX(a,b) ( ((a)>(b)) ? (a):(b) )
@@ -13,8 +18,9 @@
 //
 // Given a location (x,y) return a value
 //
-// Choice allows different functions  
+// Choice allows different functions
 // to be selected
+
 
 double dataFunction( double x, double y, int choice ){
   double value;
@@ -31,14 +37,14 @@ double dataFunction( double x, double y, int choice ){
   // default uniform data
   else
     value = 1.0;
-    
+
   return value;
 }
 
-// Compute the max and min values 
-// of the data on the quadtree node 
+// Compute the max and min values
+// of the data on the quadtree node
 //
-// If the difference is too big request 
+// If the difference is too big request
 // the node is split into children
 
 bool indicator( Node *node, double tolerance, int choice ) {
@@ -51,8 +57,8 @@ bool indicator( Node *node, double tolerance, int choice ) {
   v[2] = dataFunction(node->xy[0],h+node->xy[1], choice);
   v[3] = dataFunction(h+node->xy[0],h+node->xy[1], choice);
 
-  vmin = MIN( MIN( MIN(v[0],v[1]), v[2]), v[3]); 
-  vmax = MAX( MAX( MAX(v[0],v[1]), v[2]), v[3]); 
+  vmin = MIN( MIN( MIN(v[0],v[1]), v[2]), v[3]);
+  vmax = MAX( MAX( MAX(v[0],v[1]), v[2]), v[3]);
 
   if( (vmax-vmin) < tolerance )
     return true;
@@ -60,3 +66,31 @@ bool indicator( Node *node, double tolerance, int choice ) {
     return false;
 }
 
+
+void check(Node *node) {
+  int *counter = malloc(sizeof(int));
+
+  do {
+    *counter = 0;
+    autoTree(node,counter);
+  } while(*counter != 0);
+
+  free(counter);
+}
+
+void autoTree(Node *node, int *counter) {
+  if(node->child[0] == NULL) {
+    if(!indicator(node, 0.2, 1)) {
+      makeChildren(node);
+      *counter = *counter + 1;
+    }
+  }
+
+  else {
+    int i;
+    for ( i = 0; i < 4; i++) {
+      autoTree(node->child[i], counter);
+    }
+  }
+  return;
+}

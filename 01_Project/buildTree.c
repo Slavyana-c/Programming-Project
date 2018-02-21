@@ -1,12 +1,15 @@
 // make a node at given location (x,y) and level
+
 #include "stdio.h"
 #include "math.h"
 #include "stdlib.h"
+#include "stdbool.h"
 
 #include "treeStructure.h"
 #include "buildTree.h"
 #include "writeTree.h"
 #include "test.h"
+#include  "valueTree.h"
 
 Node *makeNode( double x, double y, int level ) {
 

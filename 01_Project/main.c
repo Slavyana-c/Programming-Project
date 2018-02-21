@@ -1,11 +1,14 @@
+
 #include "stdio.h"
 #include "math.h"
 #include "stdlib.h"
+#include "stdbool.h"
 
 #include "treeStructure.h"
 #include "buildTree.h"
 #include "writeTree.h"
 #include "test.h"
+#include  "valueTree.h"
 
 // main
 
@@ -13,9 +16,13 @@ int main( int argc, char **argv ) {
 
   Node *head;
   head = makeNode( 0.0,0.0, 0 );
+  growTree(head,5);
+  growTree(head,5);
+
+  check(head);
 
   //task1(head, 2);
-  task2(head, 2);
+  //task2(head, 2);
 
   // make the head node
   //head = makeNode( 0.0,0.0, 0 );
