@@ -2,8 +2,8 @@
 #include "math.h"
 #include "stdlib.h"
 
-void task1();
-void task2();
-void task3();
+void task1(Node *head, int testNum);
+void task2(Node *node, int testNum);
+void task3(Node *node, int testNum);
 void task4();
 void task5();

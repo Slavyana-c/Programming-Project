@@ -23,22 +23,22 @@
 
 
 double dataFunction( double x, double y, int choice ){
-  double value;
+    double value;
 
-  if( choice == 0 )
-    value = exp(-(y-x)*(y-x)/0.01) + exp(-(x-y)*(x-y)/0.01);
+    if( choice == 0 )
+        value = exp(-(y-x)*(y-x)/0.01) + exp(-(x-y)*(x-y)/0.01);
 
-  else if( choice == 1 )
-    value = exp(-(x-0.5)*(x-0.5)/0.01) + exp(-(y-0.5)*(y-0.5)/0.01);
+    else if( choice == 1 )
+        value = exp(-(x-0.5)*(x-0.5)/0.01) + exp(-(y-0.5)*(y-0.5)/0.01);
 
-  else if( choice == 2 )
-    value = exp(-((x-0.72)*(x-0.72)+(y-0.23)*(y-0.23))/0.01);
+    else if( choice == 2 )
+        value = exp(-((x-0.72)*(x-0.72)+(y-0.23)*(y-0.23))/0.01);
 
-  // default uniform data
-  else
-    value = 1.0;
+        // default uniform data
+    else
+        value = 1.0;
 
-  return value;
+    return value;
 }
 
 // Compute the max and min values
@@ -49,48 +49,48 @@ double dataFunction( double x, double y, int choice ){
 
 bool indicator( Node *node, double tolerance, int choice ) {
 
-  double v[4],vmin,vmax;
-  double h = pow(2,-node->level);
+    double v[4],vmin,vmax;
+    double h = pow(2,-node->level);
 
-  v[0] = dataFunction(node->xy[0],node->xy[1], choice);
-  v[1] = dataFunction(h+node->xy[0],node->xy[1], choice);
-  v[2] = dataFunction(node->xy[0],h+node->xy[1], choice);
-  v[3] = dataFunction(h+node->xy[0],h+node->xy[1], choice);
+    v[0] = dataFunction(node->xy[0],node->xy[1], choice);
+    v[1] = dataFunction(h+node->xy[0],node->xy[1], choice);
+    v[2] = dataFunction(node->xy[0],h+node->xy[1], choice);
+    v[3] = dataFunction(h+node->xy[0],h+node->xy[1], choice);
 
-  vmin = MIN( MIN( MIN(v[0],v[1]), v[2]), v[3]);
-  vmax = MAX( MAX( MAX(v[0],v[1]), v[2]), v[3]);
+    vmin = MIN( MIN( MIN(v[0],v[1]), v[2]), v[3]);
+    vmax = MAX( MAX( MAX(v[0],v[1]), v[2]), v[3]);
 
-  if( (vmax-vmin) < tolerance )
-    return true;
-  else
-    return false;
+    if( (vmax-vmin) < tolerance )
+        return true;
+    else
+        return false;
 }
 
 
-void check(Node *node) {
-  int *counter = malloc(sizeof(int));
+void check(Node *node, double tolerance, int choice) {
+    int *counter = malloc(sizeof(int));
 
-  do {
-    *counter = 0;
-    autoTree(node,counter);
-  } while(*counter != 0);
+    do {
+        *counter = 0;
+        autoTree(node,counter, tolerance, choice);
+    } while(*counter != 0);
 
-  free(counter);
+    free(counter);
 }
 
-void autoTree(Node *node, int *counter) {
-  if(node->child[0] == NULL) {
-    if(!indicator(node, 0.2, 1)) {
-      makeChildren(node);
-      *counter = *counter + 1;
+void autoTree(Node *node, int *counter, double tolerance, int choice) {
+    if(node->child[0] == NULL) {
+        if(!indicator(node, tolerance, choice)) {
+            makeChildren(node);
+            *counter = *counter + 1;
+        }
     }
-  }
 
-  else {
-    int i;
-    for ( i = 0; i < 4; i++) {
-      autoTree(node->child[i], counter);
+    else {
+        int i;
+        for ( i = 0; i < 4; i++) {
+            autoTree(node->child[i], counter);
+        }
     }
-  }
-  return;
+    return;
 }
