@@ -67,17 +67,6 @@ bool indicator( Node *node, double tolerance, int choice ) {
 }
 
 
-void check(Node *node, double tolerance, int choice) {
-    int *counter = malloc(sizeof(int));
-
-    do {
-        *counter = 0;
-        autoTree(node,counter, tolerance, choice);
-    } while(*counter != 0);
-
-    free(counter);
-}
-
 void autoTree(Node *node, int *counter, double tolerance, int choice) {
     if(node->child[0] == NULL) {
         if(!indicator(node, tolerance, choice)) {
@@ -89,8 +78,19 @@ void autoTree(Node *node, int *counter, double tolerance, int choice) {
     else {
         int i;
         for ( i = 0; i < 4; i++) {
-            autoTree(node->child[i], counter);
+            autoTree(node->child[i], counter, tolerance, choice);
         }
     }
-    return;
 }
+
+void check(Node *node, double tolerance, int choice) {
+    int *counter = malloc(sizeof(int));
+
+    do {
+        *counter = 0;
+        autoTree(node,counter, tolerance, choice);
+    } while(*counter != 0);
+
+    free(counter);
+}
+
