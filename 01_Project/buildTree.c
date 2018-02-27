@@ -27,7 +27,8 @@ Node *makeNode( double x, double y, int level ) {
 
 // split a leaf nodes into 4 children
 
-void makeChildren( Node *parent ) {
+void makeChildren( Node *parent, int maxLvl ) {
+   if(parent->level == maxLvl) return;
 
   double x = parent->xy[0];
   double y = parent->xy[1];
@@ -42,12 +43,13 @@ void makeChildren( Node *parent ) {
   parent->child[3] = makeNode( x,y+hChild, level+1 );
 }
 
+// Grows the tree by one lvl
 void growTree( Node *node, int maxLvl ) {
   int i;
 
   if( node->child[0] == NULL) {
     if(node->level < maxLvl){
-      makeChildren(node);
+      makeChildren(node, maxLvl);
     }
     else return;
     }

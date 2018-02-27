@@ -4,7 +4,7 @@
 EXE_DIR = .
 EXE = $(EXE_DIR)/quadTree
 
-SRC= main.c writeTree.c buildTree.c test.c valueTree.c
+SRC= main.c writeTree.c buildTree.c test.c valueTree.c destroyTree.c
 
 # generic build details
 

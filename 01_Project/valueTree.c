@@ -70,7 +70,7 @@ bool indicator( Node *node, double tolerance, int choice ) {
 void autoTree(Node *node, int *counter, double tolerance, int choice) {
     if(node->child[0] == NULL) {
         if(!indicator(node, tolerance, choice)) {
-            makeChildren(node);
+            makeChildren(node, 100);
             *counter = *counter + 1;
         }
     }
