@@ -5,6 +5,7 @@
 #include "writeTree.h"
 #include "test.h"
 
+
 // main
 
 int main( int argc, char **argv ) {
@@ -21,16 +22,16 @@ int main( int argc, char **argv ) {
 
     while(task < 1 || task > 4) {
         scanf("%d", &task);
-        if(task < 1 || task > 4) printf("Invalid number.\nPlease select 1-4.");
+        if(task < 1 || task > 4) printf("Invalid number.\nPlease select 1-4.\n");
     }
 
     switch (task) {
         case 1:
             printf("Please select a test (1-2):\n1.A full tree at Level 2\n"
-                           "2.A non-uniform Level 3 tree that you define.\n");
+                           "2.A non-uniform Level 3 tree.\n");
             while(test < 1 || test > 2) {
                 scanf("%d", &test);
-                if(test < 1 || test > 2) printf("Invalid number.\nPlease select 1-2.");
+                if(test < 1 || test > 2) printf("Invalid number.\nPlease select 1-2.\n");
             }
             task1(head, test);
 
@@ -42,7 +43,7 @@ int main( int argc, char **argv ) {
 
             while(test < 1 || test > 2) {
                 scanf("%d", &test);
-                if(test < 1 || test > 2) printf("Invalid number.\nPlease select 1-2.");
+                if(test < 1 || test > 2) printf("Invalid number.\nPlease select 1-2.\n");
             }
             task2(head, test);
             break;
@@ -52,7 +53,7 @@ int main( int argc, char **argv ) {
                            "2.Set a limit on tree level and grow a full Level n tree.\n");
             while(test < 1 || test > 2) {
                 scanf("%d", &test);
-                if(test < 1 || test > 2) printf("Invalid number.\nPlease select 1-2.");
+                if(test < 1 || test > 2) printf("Invalid number.\nPlease select 1-2.\n");
             }
             task3(head, test);
 
@@ -60,12 +61,12 @@ int main( int argc, char **argv ) {
 
         case 4:
             printf("Please select a test (1-3):\n1.Tolerance = 0.5, Choice = 0.\n"
-                           "2.Tolerance = 0.2, choice = 1.\n 3.Custom tolerance and choice.");
+                           "2.Tolerance = 0.2, choice = 1.\n3.Custom tolerance and choice.\n");
             while(test < 1 || test > 3) {
                 scanf("%d", &test);
-                if(test < 1 || test > 3) printf("Invalid number.\nPlease select 1-3.");
+                if(test < 1 || test > 3) printf("Invalid number.\nPlease select 1-3.\n");
             }
-            task3(head, test);
+            task4(head, test);
 
     }
 

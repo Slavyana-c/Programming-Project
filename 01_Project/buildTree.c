@@ -40,8 +40,6 @@ void makeChildren( Node *parent ) {
   parent->child[1] = makeNode( x+hChild,y, level+1 );
   parent->child[2] = makeNode( x+hChild,y+hChild, level+1 );
   parent->child[3] = makeNode( x,y+hChild, level+1 );
-
-  return;
 }
 
 void growTree( Node *node, int maxLvl ) {
@@ -57,10 +55,6 @@ void growTree( Node *node, int maxLvl ) {
   else {
     for ( i=0; i<4; ++i ) {
         growTree (node->child[i], maxLvl);
-      }
+    }
   }
-
-
-  return;
-
 }

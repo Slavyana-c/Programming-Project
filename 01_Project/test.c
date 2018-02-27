@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "math.h"
 #include "stdlib.h"
+#include "stdbool.h"
 
 #include "treeStructure.h"
 #include "buildTree.h"
@@ -98,7 +99,6 @@ void task4(Node *node, int testNum) {
         case 3:
 
             printf("tolerance = ");
-            scanf("%lf", &tolerance);
             printf("choice = ");
             scanf("%d", &choice);
             check(node, tolerance, choice);
