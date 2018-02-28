@@ -6,7 +6,6 @@
 #include "test.h"
 #include "destroyTree.h"
 
-
 // main
 
 int main( int argc, char **argv ) {
@@ -55,10 +54,11 @@ int main( int argc, char **argv ) {
             printf("Please select a test (1-2):\n1.Grow a full Level n tree.\n"
                            "2.Grow a non-uniform level 3 tree with a level limit 3.\n"
                            "3.Grow a non-uniform level 3 tree with a level limit 4.\n"
-                           "4.Set a limit on tree level and grow a full Level n tree.\n");
-            while(test < 1 || test > 4) {
+                           "4.Make children of a level 0 tree with a level limit 0.\n"
+                           "5.Set a limit on tree level and grow a full Level n tree.\n");
+            while(test < 1 || test > 5) {
                 scanf("%d", &test);
-                if(test < 1 || test > 4) printf("Invalid number.\nPlease select 1-2.\n");
+                if(test < 1 || test > 5) printf("Invalid number.\nPlease select 1-2.\n");
             }
             task3(head, test);
 

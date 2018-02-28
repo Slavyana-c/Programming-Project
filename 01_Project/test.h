@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "math.h"
 #include "stdlib.h"
+#include "stdbool.h"
 
 void task1(Node *head, int testNum);
 void task2(Node *node, int testNum);

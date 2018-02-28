@@ -1,11 +1,5 @@
-#include "stdio.h"
-#include "math.h"
 #include "stdlib.h"
-
 #include "treeStructure.h"
-#include "buildTree.h"
-#include "writeTree.h"
-#include "test.h"
 
 void destroyTree(Node *node) {
     int i;

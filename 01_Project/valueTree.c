@@ -6,8 +6,6 @@
 
 #include "treeStructure.h"
 #include "buildTree.h"
-#include "writeTree.h"
-#include "test.h"
 #include  "valueTree.h"
 
 #define MAX(a,b) ( ((a)>(b)) ? (a):(b) )
@@ -70,7 +68,7 @@ bool indicator( Node *node, double tolerance, int choice ) {
 void autoTree(Node *node, int *counter, double tolerance, int choice) {
     if(node->child[0] == NULL) {
         if(!indicator(node, tolerance, choice)) {
-            makeChildren(node, 100);
+            makeChildren(node, 10);
             *counter = *counter + 1;
         }
     }

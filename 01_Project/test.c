@@ -1,11 +1,7 @@
 #include "stdio.h"
-#include "math.h"
-#include "stdlib.h"
 #include "stdbool.h"
-
 #include "treeStructure.h"
 #include "buildTree.h"
-#include "writeTree.h"
 #include "valueTree.h"
 
 void task1(Node *head, int testNum) {
@@ -84,9 +80,13 @@ void task3(Node *node, int testNum) {
             growTree(node, 4);
 
             break;
-
-         // Grows a full lvl n tree with a set limit
+         // test with makeChildren and level limit 0
         case 4:
+            makeChildren(node, 0);
+
+            break;
+         // Grows a full lvl n tree with a set limit
+        case 5:
             printf("n = ");
             scanf("%d", &n);
             printf("level limit = ");

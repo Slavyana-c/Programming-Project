@@ -2,8 +2,6 @@
 
 #include "stdio.h"
 #include "math.h"
-#include "stdlib.h"
-
 #include "treeStructure.h"
 #include "buildTree.h"
 
@@ -28,7 +26,7 @@ Node *makeNode( double x, double y, int level ) {
 // split a leaf nodes into 4 children
 
 void makeChildren( Node *parent, int maxLvl ) {
-   if(parent->level == maxLvl) return;
+   if(parent->level >= maxLvl) return;
 
   double x = parent->xy[0];
   double y = parent->xy[1];
@@ -45,16 +43,14 @@ void makeChildren( Node *parent, int maxLvl ) {
 
 // Grows the tree by one lvl
 void growTree( Node *node, int maxLvl ) {
-  int i;
+
 
   if( node->child[0] == NULL) {
-    if(node->level < maxLvl){
       makeChildren(node, maxLvl);
-    }
-    else return;
-    }
+  }
 
   else {
+      int i;
     for ( i=0; i<4; ++i ) {
         growTree (node->child[i], maxLvl);
     }
