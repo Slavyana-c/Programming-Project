@@ -1,36 +1,8 @@
-#include "stdio.h"
-#include "math.h"
+#include <stdio.h>
+#include <math.h>
 #include "treeStructure.h"
-#include "writeTree.h"
 
 
-// write out the tree to file 'quad.out'
-void writeTree( Node *head ) {
-
-    FILE *fp = fopen("quad.out","w");
-
-    writeNode(fp,head);
-
-    fclose(fp);
-
-    return;
-}
-
-// recursively visit the leaf nodes
-
-void writeNode( FILE *fp, Node *node ) {
-
-    int i;
-
-    if( node->child[0] == NULL )
-        printOut( fp, node );
-    else {
-        for ( i=0; i<4; ++i ) {
-            writeNode( fp, node->child[i] );
-        }
-    }
-    return;
-}
 
 // write out the (x,y) corners of the node
 
@@ -48,5 +20,38 @@ void printOut( FILE *fp, Node *node ) {
 
     return;
 }
+
+// recursively visit the leaf nodes
+
+void writeNode(FILE *fp, Node *node ) {
+
+    int i;
+
+    if( node->child[0] == NULL )
+        printOut( fp, node );
+    else {
+        for ( i=0; i<4; ++i ) {
+            writeNode( fp, node->child[i] );
+        }
+    }
+    return;
+}
+
+// write out the tree to file 'quad.out'
+
+void writeTree( Node *head ) {
+
+    FILE *fp = fopen("quad.out","w");
+
+    writeNode(fp,head);
+
+    fclose(fp);
+
+    return;
+}
+
+
+
+
 
 

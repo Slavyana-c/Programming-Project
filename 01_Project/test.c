@@ -1,5 +1,5 @@
-#include "stdio.h"
-#include "stdbool.h"
+#include <stdio.h>
+#include <stdbool.h>
 #include "treeStructure.h"
 #include "buildTree.h"
 #include "valueTree.h"

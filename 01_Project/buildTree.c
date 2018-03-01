@@ -1,10 +1,10 @@
-// make a node at given location (x,y) and level
-
-#include "stdio.h"
-#include "math.h"
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
 #include "treeStructure.h"
-#include "buildTree.h"
 
+
+// make a node at given location (x,y) and level
 
 Node *makeNode( double x, double y, int level ) {
 
@@ -42,8 +42,8 @@ void makeChildren( Node *parent, int maxLvl ) {
 }
 
 // Grows the tree by one lvl
-void growTree( Node *node, int maxLvl ) {
 
+void growTree( Node *node, int maxLvl ) {
 
   if( node->child[0] == NULL) {
       makeChildren(node, maxLvl);

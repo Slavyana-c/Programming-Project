@@ -64,6 +64,7 @@ bool indicator( Node *node, double tolerance, int choice ) {
         return false;
 }
 
+// Builds the tree
 
 void autoTree(Node *node, int *counter, double tolerance, int choice) {
     if(node->child[0] == NULL) {
@@ -80,6 +81,8 @@ void autoTree(Node *node, int *counter, double tolerance, int choice) {
         }
     }
 }
+
+// Checks if tree has to be build
 
 void check(Node *node, double tolerance, int choice) {
     int *counter = malloc(sizeof(int));

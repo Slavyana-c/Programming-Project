@@ -1,4 +1,4 @@
-#include "stdlib.h"
+#include <stdlib.h>
 #include "treeStructure.h"
 
 void destroyTree(Node *node) {
