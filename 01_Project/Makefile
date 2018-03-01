@@ -31,4 +31,9 @@ clean:
 
 # dependencies
 
-#main: main.o buildTree.o writeTree.o
+main.o: main.c treeStructure.h
+writeTree.o: writeTree.c wroteTree.h
+buildTree.o: buildTree.c buildTree.h
+valueTree.o: valueTree.c valueTree.h
+test.o: test.c test.h
+destroyTree.o: destroyTree.c destroyTree.h
