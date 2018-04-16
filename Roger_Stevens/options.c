@@ -1,12 +1,30 @@
+/*
+options.c
+All game options
+*/
+
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 
 #include "constants.h"
 #include "globals.h"
 
+// Creates the file name
+void getFile(char fileName[20], int i)
+{
+  char path[20], numstr[2];
+
+  strcpy(path, "levels/lvl");
+  strcpy(fileName, path);
+  sprintf(numstr, "%d", i);
+  strcat(fileName, numstr);
+  strcat(fileName, ".txt");
+}
+
+// Selects the appropriate action, depending on the GAME_MODE
 void option(SDL_Renderer *renderer)
 {
-    char path[20], fileName[20], numstr[2];
+    char fileName[20];
 
     switch(GAME_MODE)
     {
@@ -20,11 +38,8 @@ void option(SDL_Renderer *renderer)
           // Loop through the levels
           for (int i = 1; i <= ALL_LEVELS; i++)
           {
-              strcpy(path, "levels/lvl");
-              strcpy(fileName, path);
-              sprintf(numstr, "%d", i);
-              strcat(fileName, numstr);
-              strcat(fileName, ".txt");
+              // Get file name
+              getFile(fileName, i);
             //if(!game(renderer, fileName, option)) break;
           }
 
@@ -38,26 +53,22 @@ void option(SDL_Renderer *renderer)
             for (int i = LVL_NUM; i <= ALL_LEVELS; i++)
             {
                 GAME_MODE = PLAY;
-                strcpy(path, "levels/lvl");
-                strcpy(fileName, path);
-                sprintf(numstr, "%d", i);
-                strcat(fileName, numstr);
-                strcat(fileName, ".txt");
+
+                // Get file name
+                getFile(fileName, i);
                 //if(!game(renderer, fileName, option)) break;
             }
 
             break;
 
-        case 3:
+        case EDIT:
             printf("Edit custom level.\n");
-            //strcpy(fileName, "custom.txt");
+            strcpy(fileName, "custom.txt");
             //editor(renderer);
             break;
 
-
-        case 4:
+        case CUSTOM:
             printf("Play custom level.\n");
-            //strcpy(fileName, "custom.txt");
             strcpy(fileName, "custom.txt");
             //if(!game(renderer, fileName, option)) break;
             break;
