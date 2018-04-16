@@ -7,6 +7,7 @@ Shows the menu
 #include <SDL2/SDL_image.h>
 
 #include "constants.h"
+#include "options.h"
 
 int GAME_MODE;
 int LVL_NUM;
@@ -35,7 +36,7 @@ int main(int argc, char *argv[])
 
   menu = IMG_LoadTexture(renderer, "images/menu.jpg");
 
-GAME_MODE = MENU;
+  GAME_MODE = MENU;
   // Event loop
   while (GAME_MODE != QUIT)
   {
@@ -57,22 +58,22 @@ GAME_MODE = MENU;
 
                   case SDLK_1:
                     GAME_MODE = PLAY;
-                      //mode(1, renderer);
+                    option(renderer);
                     break;
 
                   case SDLK_2:
                     GAME_MODE = CONTINUE;
-                  //  mode(2, renderer);
+                    option(renderer);
                     break;
 
                   case SDLK_3:
                     GAME_MODE = EDIT;
-                //  mode(3, renderer);
+                    option(renderer);
                     break;
 
                   case SDLK_4:
                     GAME_MODE = CUSTOM;
-                //  mode(4, renderer);
+                    option(renderer);
                     break;
               }
               break;
@@ -83,9 +84,8 @@ GAME_MODE = MENU;
       SDL_RenderPresent(renderer);
     }
 
+    SDL_DestroyTexture(menu);
     SDL_DestroyRenderer(renderer);
-    //SDL_FreeSurface(menu);
-    //SDL_FreeSurface(screen);
     SDL_DestroyWindow(window);
     SDL_Quit();
     return EXIT_SUCCESS;
