@@ -3,8 +3,8 @@ globals.h
 Global variables for the whole program (defined in main.c)
 */
 
-#ifndef DEF_CONSTANTS
-#define DEF_CONSTANTS
+#ifndef DEF_GLOBALS
+#define DEF_GLOBALS
 
   extern int GAME_MODE;
   extern int LVL_NUM;

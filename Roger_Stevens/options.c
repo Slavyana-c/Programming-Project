@@ -4,11 +4,6 @@
 #include "constants.h"
 #include "globals.h"
 
-extern int GAME_MODE;
-extern int LVL_NUM;
-extern int MOVES;
-extern int BOOKS;
-
 void option(SDL_Renderer *renderer)
 {
     char path[20], fileName[20], numstr[2];
