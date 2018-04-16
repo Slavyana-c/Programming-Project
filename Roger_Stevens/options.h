@@ -7,5 +7,6 @@
 #define DEF_OPTIONS
 
   void option(SDL_Renderer *renderer);
+  void getFile(char fileName[20], int i);
 
 #endif

@@ -47,7 +47,7 @@ void option(SDL_Renderer *renderer)
 
         case CONTINUE:
             printf("Loading saved game.\n");
-            strcpy(fileName, "continue.txt");
+            strcpy(fileName, "levels/continue.txt");
             //if(!game(renderer, fileName, option)) break;
             LVL_NUM++;
             for (int i = LVL_NUM; i <= ALL_LEVELS; i++)
@@ -63,13 +63,13 @@ void option(SDL_Renderer *renderer)
 
         case EDIT:
             printf("Edit custom level.\n");
-            strcpy(fileName, "custom.txt");
+            strcpy(fileName, "levels/custom.txt");
             //editor(renderer);
             break;
 
         case CUSTOM:
             printf("Play custom level.\n");
-            strcpy(fileName, "custom.txt");
+            strcpy(fileName, "levels/custom.txt");
             //if(!game(renderer, fileName, option)) break;
             break;
     }
