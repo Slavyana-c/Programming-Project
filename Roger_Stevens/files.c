@@ -13,6 +13,7 @@ int loadLevel(int level[][MAP_WIDTH_BLOCKS], char sceneName[], char fileName[])
     int count = 0;
     int i, j;
 
+    printf("Loading file %s\n", fileName);
     file = fopen(fileName, "r");
     if (file == NULL)
     {
@@ -52,9 +53,10 @@ int loadLevel(int level[][MAP_WIDTH_BLOCKS], char sceneName[], char fileName[])
 }
 
 // Save the level, return 1 if successful
-int saveLevel(int level[][MAP_WIDTH_BLOCKS],  char sceneName[], char fileName[])
+int saveLevel(int level[][MAP_WIDTH_BLOCKS], char sceneName[], char fileName[])
 {
 
+  printf("Saving file %s\n", fileName);
     FILE *file = fopen(fileName, "w");
     if (file == NULL)
     {

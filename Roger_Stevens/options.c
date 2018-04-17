@@ -50,7 +50,7 @@ void option(SDL_Renderer *renderer)
         case CONTINUE:
             printf("Loading saved game.\n");
             strcpy(fileName, "levels/continue.txt");
-            //if(!game(renderer, fileName, option)) break;
+            if(!play(renderer, fileName)) break;
             LVL_NUM++;
             for (int i = LVL_NUM; i <= ALL_LEVELS; i++)
             {

@@ -92,7 +92,7 @@ void renderText(SDL_Renderer *renderer)
   textPosition.h = TEXT_H;
   textPosition.w = TEXT_W;
 
-  TTF_Font * font = TTF_OpenFont("font/arial.ttf", 25);
+  TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 25);
   if(!font)
   {
       printf("TTF_OpenFont error: %s\n", TTF_GetError());
@@ -216,7 +216,7 @@ int play(SDL_Renderer *renderer, char fileName[])
                     case SDLK_ESCAPE:
                         nextLvl = 0;
                         map[playerPosition.y][playerPosition.x] = PLAYER;
-                        saveLevel(map, sceneName, "images/continue.txt");
+                        saveLevel(map, sceneName, "levels/continue.txt");
                         quit = 1;
                         break;
 
