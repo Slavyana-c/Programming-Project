@@ -23,6 +23,16 @@ Defines the constants for the whole program
     #define BAR_WIDTH           WIDTH_IN_BLOCKS * BLOCK_SIZE
     #define BAR_HEIGHT          BLOCK_SIZE
 
+    // Text position
+    #define TEXT_Y              WINDOW_HEIGHT - 20
+    #define TEXT_H              20
+    #define TEXT_W              70
+
+    #define LVL_X               20
+    #define MOVES_X             300
+    #define BOOKS_X             600
+
+
     // Map size in blocks
     #define MAP_WIDTH_BLOCKS    WIDTH_IN_BLOCKS
     #define MAP_HEIGHT_BLOCKS   (HEIGHT_IN_BLOCKS - 3)

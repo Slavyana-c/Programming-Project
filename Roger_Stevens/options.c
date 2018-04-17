@@ -8,6 +8,7 @@ All game options
 
 #include "constants.h"
 #include "globals.h"
+#include "game.h"
 
 // Creates the file name
 void getFile(char fileName[20], int i)
@@ -40,7 +41,8 @@ void option(SDL_Renderer *renderer)
           {
               // Get file name
               getFile(fileName, i);
-            //if(!game(renderer, fileName, option)) break;
+
+              if(!play(renderer, fileName)) break;
           }
 
           break;
@@ -56,7 +58,8 @@ void option(SDL_Renderer *renderer)
 
                 // Get file name
                 getFile(fileName, i);
-                //if(!game(renderer, fileName, option)) break;
+
+                if(!play(renderer, fileName)) break;
             }
 
             break;
