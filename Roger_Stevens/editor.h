@@ -1,5 +1,5 @@
-#ifndef DEF_FILES
-#define DEF_FILES
+#ifndef DEF_EDIT
+#define DEF_EDIT
 
 void editor(SDL_Renderer *renderer);
 

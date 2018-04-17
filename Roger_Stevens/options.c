@@ -9,6 +9,7 @@ All game options
 #include "constants.h"
 #include "globals.h"
 #include "game.h"
+#include "editor.h"
 
 // Creates the file name
 void getFile(char fileName[20], int i)
@@ -66,14 +67,13 @@ void option(SDL_Renderer *renderer)
 
         case EDIT:
             printf("Edit custom level.\n");
-            strcpy(fileName, "levels/custom.txt");
-            //editor(renderer);
+            editor(renderer);
             break;
 
         case CUSTOM:
             printf("Play custom level.\n");
             strcpy(fileName, "levels/custom.txt");
-            //if(!game(renderer, fileName, option)) break;
+            if(!play(renderer, fileName)) break;
             break;
     }
 }

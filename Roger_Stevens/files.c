@@ -25,10 +25,7 @@ int loadLevel(int level[][MAP_WIDTH_BLOCKS], char sceneName[], char fileName[])
     fgets(sceneName, 100, file);
     sceneName[strcspn(sceneName, "\r\n")] = 0;
 
-    // Read only the level
     if(GAME_MODE == PLAY) fscanf(file,"%d", &LVL_NUM);
-
-    // Get more data
     else fscanf(file,"%d %d %d", &LVL_NUM, &MOVES, &BOOKS);
 
     // Get map data

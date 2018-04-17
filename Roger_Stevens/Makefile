@@ -4,7 +4,7 @@
 EXE_DIR = .
 EXE = $(EXE_DIR)/stevens
 
-SRC= main.c options.c game.c files.c
+SRC= main.c options.c game.c files.c editor.c
 
 # generic build details
 
@@ -36,5 +36,4 @@ main.o: main.c constants.h globals.h
 options.o: options.c options.h
 game.o: game.c game.h
 files.o: files.c files.h
-#game_modes.o: game_modes.c constants.h
-#editor.o: editor.c editor.h constants.h
+editor.o: editor.c editor.h

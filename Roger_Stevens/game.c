@@ -145,7 +145,7 @@ int play(SDL_Renderer *renderer, char fileName[])
     char sceneName[20] = {0};
     SDL_Event event;
 
-    int map[MAP_HEIGHT_BLOCKS][MAP_WIDTH_BLOCKS] = {0};
+    int map[MAP_HEIGHT_BLOCKS][MAP_WIDTH_BLOCKS] = {{0}};
 
     TTF_Init();
 
