@@ -36,7 +36,6 @@ void editor(SDL_Renderer *renderer)
     position.w = BLOCK_SIZE;
     position.h = BLOCK_SIZE;
 
-
     // Load level
     if (!loadLevel(map, sceneName, fileName))
     {
@@ -49,6 +48,9 @@ void editor(SDL_Renderer *renderer)
     // Event loop
     while (!quit)
     {
+      SDL_RenderClear(renderer);
+      SDL_RenderCopy(renderer, scene, NULL, &scenePosition);
+
         SDL_PollEvent(&event);
         switch(event.type)
         {
@@ -78,6 +80,8 @@ void editor(SDL_Renderer *renderer)
                 break;
 
             case SDL_MOUSEMOTION: // Allow moving the mouse
+                position.x = event.motion.x - 20;
+                position.y = event.motion.y - 20;
                 if (leftClick)
                 {
                     map[(event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE][event.motion.x / BLOCK_SIZE] = currentObject;
@@ -86,7 +90,24 @@ void editor(SDL_Renderer *renderer)
                 {
                     map[(event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE][event.motion.x / BLOCK_SIZE] = EMPTY;
                 }
+                switch(currentObject)
+                {
+                    case WALL:
+                        SDL_RenderCopy(renderer, wall, NULL, &position);
+                        break;
+
+                    case BOOK:
+                        SDL_RenderCopy(renderer, book, NULL, &position);
+                        break;
+
+                    case PLAYER:
+                        SDL_RenderCopy(renderer, player, NULL, &position);
+                        break;
+                }
                 break;
+
+              //  SDL_BUTTON_WHEELUP
+  // SDL_BUTTON_WHEELDOWN
 
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
@@ -96,21 +117,20 @@ void editor(SDL_Renderer *renderer)
                         quit = 1;
                         break;
 
-                    case SDLK_LEFT:
-                        currentObject--;
-                        if(currentObject < 0) currentObject = PLAYER;
-                        break;
+                        case SDLK_1:
+                            currentObject = WALL;
+                            break;
+                        case SDLK_2:
+                            currentObject = BOOK;
+                            break;
+                        case SDLK_3:
+                            currentObject = PLAYER;
+                            break;
 
-                    case SDLK_RIGHT:
-                        currentObject++;
-                        if(currentObject > PLAYER) currentObject = WALL;
-                        break;
                 }
                 break;
         }
 
-        SDL_RenderClear(renderer);
-        SDL_RenderCopy(renderer, scene, NULL, &scenePosition);
 
         // Render map
         for (i = 0 ; i < MAP_HEIGHT_BLOCKS ; i++)
