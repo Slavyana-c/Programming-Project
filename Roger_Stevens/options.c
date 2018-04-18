@@ -85,7 +85,6 @@ void option(SDL_Renderer *renderer)
             strcpy(fileName, "levels/custom.txt");
 
             play(renderer, fileName);
-            printf("%d\n", GAME_MODE);
             if(GAME_MODE == WIN) ShowWin(renderer);
             if(GAME_MODE == LOSE) ShowLose(renderer);
             break;

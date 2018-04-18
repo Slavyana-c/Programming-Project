@@ -81,6 +81,7 @@ void movePlayer(int map[][MAP_WIDTH_BLOCKS], SDL_Rect *pos, int direction)
 
 }
 
+// Writes saving..
 void savedMessage(SDL_Renderer *renderer)
 {
     SDL_Rect textPosition;
@@ -118,11 +119,12 @@ void renderText(SDL_Renderer *renderer)
 {
   SDL_Rect textPosition;
   char fixedMoves[20] = {0}, fixedBooks[20] = {0},
-  fixedLevel[20] = {0}, numstr[5] = {0};
+  fixedLevel[20] = {0}, fixedLives[20], numstr[5] = {0};
 
   strcpy(fixedLevel, "Level: ");
   strcpy(fixedMoves, "Moves: ");
   strcpy(fixedBooks, "Books: ");
+  strcpy(fixedLives, "Lives: ");
 
   // Set text position
   textPosition.y = TEXT_Y;
@@ -148,12 +150,22 @@ void renderText(SDL_Renderer *renderer)
   sprintf(numstr, "%d", BOOKS);
   strcat(fixedBooks, numstr);
 
+  sprintf(numstr, "%d", LIVES);
+  strcat(fixedLives, numstr);
+
   // Copy to renderer
   textPosition.x = LVL_X;
   SDL_Surface * surface = TTF_RenderText_Solid(font,
   fixedLevel, color);
   SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
   SDL_RenderCopy(renderer, texture, NULL, &textPosition);
+
+  textPosition.x = LIVES_X;
+  surface = TTF_RenderText_Solid(font,
+  fixedLives, color);
+  texture = SDL_CreateTextureFromSurface(renderer, surface);
+  SDL_RenderCopy(renderer, texture, NULL, &textPosition);
+
 
   textPosition.x = MOVES_X;
   surface = TTF_RenderText_Solid(font,
@@ -180,7 +192,7 @@ void renderText(SDL_Renderer *renderer)
 int play(SDL_Renderer *renderer, char fileName[])
 {
     SDL_Texture *player[4] = {NULL};
-    SDL_Texture *wall = NULL, *book = NULL, *playerNow = NULL, *scene = NULL;
+    SDL_Texture *wall = NULL, *book = NULL, *playerNow = NULL, *enemy = NULL, *scene = NULL;
     SDL_Rect position, playerPosition, scenePosition;
     int nextLvl = 1, quit = 0, booksLeft = 0, i = 0, j = 0;
     char sceneName[20] = {0};
@@ -197,6 +209,7 @@ int play(SDL_Renderer *renderer, char fileName[])
     player[LEFT] = IMG_LoadTexture(renderer, "images/mario_gauche.gif");
     player[UP] = IMG_LoadTexture(renderer, "images/mario_haut.gif");
     player[RIGHT] = IMG_LoadTexture(renderer, "images/mario_droite.gif");
+    enemy = IMG_LoadTexture(renderer, "images/net.jpg");
 
     // Set positions
     scenePosition.y = 0;
@@ -309,6 +322,9 @@ int play(SDL_Renderer *renderer, char fileName[])
                     case BOOK:
                         SDL_RenderCopy(renderer, book, NULL, &position);
                         booksLeft = 1;
+                        break;
+                    case ENEMY:
+                        SDL_RenderCopy(renderer, enemy, NULL, &position);
                         break;
                 }
             }

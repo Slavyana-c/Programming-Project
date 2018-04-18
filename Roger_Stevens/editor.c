@@ -171,4 +171,5 @@ void editor(SDL_Renderer *renderer)
     SDL_DestroyTexture(wall);
     SDL_DestroyTexture(book);
     SDL_DestroyTexture(player);
+    SDL_DestroyTexture(enemy);
 }
