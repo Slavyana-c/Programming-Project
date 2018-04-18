@@ -12,6 +12,13 @@ Playing the game
 #include "constants.h"
 #include "files.h"
 
+
+
+void playerDead()
+{
+
+}
+
 // Move the player
 // Without leaving the map or going through walls
 void movePlayer(int map[][MAP_WIDTH_BLOCKS], SDL_Rect *pos, int direction)
@@ -80,6 +87,7 @@ void movePlayer(int map[][MAP_WIDTH_BLOCKS], SDL_Rect *pos, int direction)
     }
 
 }
+
 
 // Writes saving..
 void savedMessage(SDL_Renderer *renderer)
