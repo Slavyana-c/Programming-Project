@@ -38,7 +38,7 @@ void task2(Node *node, int testNum) {
             growTree(node, 5);
             break;
 
-        // Grows a full lvl 4 tree
+        // Grows a lvl 4 tree
         case 2:
             task1(node, 2);
             growTree(node, 5);
@@ -128,5 +128,3 @@ void task4(Node *node, int testNum) {
 
     }
 }
-
-

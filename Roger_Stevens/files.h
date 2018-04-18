@@ -1,3 +1,8 @@
+/*
+files.h
+Prototypes of files.c
+*/
+
 #include <SDL2/SDL.h>
 #include "constants.h"
 

@@ -1,3 +1,8 @@
+/*
+files.c
+Saves and loads levels from files
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -25,6 +30,7 @@ int loadLevel(int level[][MAP_WIDTH_BLOCKS], char sceneName[], char fileName[])
     fgets(sceneName, 100, file);
     sceneName[strcspn(sceneName, "\r\n")] = 0;
 
+    // Get level and progress
     if(GAME_MODE == PLAY) fscanf(file,"%d", &LVL_NUM);
     else fscanf(file,"%d %d %d", &LVL_NUM, &MOVES, &BOOKS);
 

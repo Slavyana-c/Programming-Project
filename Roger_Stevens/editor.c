@@ -12,7 +12,7 @@
 void editor(SDL_Renderer *renderer)
 {
     SDL_Texture *wall = NULL, *book = NULL, *player = NULL, *scene = NULL;
-    SDL_Rect position, scenePosition;
+    SDL_Rect position, scenePosition, mousePosition;
     SDL_Event event;
     char sceneName[20];
     char fileName[20];
@@ -33,6 +33,8 @@ void editor(SDL_Renderer *renderer)
     scenePosition.w = SCENE_WIDTH;
 
 
+    mousePosition.w = BLOCK_SIZE;
+    mousePosition.h = BLOCK_SIZE;
     position.w = BLOCK_SIZE;
     position.h = BLOCK_SIZE;
 
@@ -80,8 +82,8 @@ void editor(SDL_Renderer *renderer)
                 break;
 
             case SDL_MOUSEMOTION: // Allow moving the mouse
-                position.x = event.motion.x - 20;
-                position.y = event.motion.y - 20;
+                mousePosition.x = event.motion.x - 20;
+                mousePosition.y = event.motion.y - 20;
                 if (leftClick)
                 {
                     map[(event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE][event.motion.x / BLOCK_SIZE] = currentObject;
@@ -90,24 +92,7 @@ void editor(SDL_Renderer *renderer)
                 {
                     map[(event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE][event.motion.x / BLOCK_SIZE] = EMPTY;
                 }
-                switch(currentObject)
-                {
-                    case WALL:
-                        SDL_RenderCopy(renderer, wall, NULL, &position);
-                        break;
-
-                    case BOOK:
-                        SDL_RenderCopy(renderer, book, NULL, &position);
-                        break;
-
-                    case PLAYER:
-                        SDL_RenderCopy(renderer, player, NULL, &position);
-                        break;
-                }
                 break;
-
-              //  SDL_BUTTON_WHEELUP
-  // SDL_BUTTON_WHEELDOWN
 
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
@@ -155,6 +140,26 @@ void editor(SDL_Renderer *renderer)
                 }
             }
         }
+
+        // Render mouse block
+        switch(currentObject)
+        {
+            case WALL:
+                SDL_RenderCopy(renderer, wall, NULL, &mousePosition);
+                break;
+
+            case BOOK:
+                SDL_RenderCopy(renderer, book, NULL, &mousePosition);
+                break;
+
+            case PLAYER:
+                SDL_RenderCopy(renderer, player, NULL, &mousePosition);
+                break;
+        }
         SDL_RenderPresent(renderer);
     }
+
+    SDL_DestroyTexture(wall);
+    SDL_DestroyTexture(book);
+    SDL_DestroyTexture(player);
 }

@@ -32,7 +32,6 @@ Defines the constants for the whole program
     #define MOVES_X             300
     #define BOOKS_X             600
 
-
     // Map size in blocks
     #define MAP_WIDTH_BLOCKS    WIDTH_IN_BLOCKS
     #define MAP_HEIGHT_BLOCKS   (HEIGHT_IN_BLOCKS - 3)

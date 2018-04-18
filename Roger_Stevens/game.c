@@ -1,3 +1,8 @@
+/*
+game.c
+Playing the game
+*/
+
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -133,6 +138,10 @@ void renderText(SDL_Renderer *renderer)
 
   SDL_RenderCopy(renderer, texture, NULL, &textPosition);
 
+  TTF_CloseFont(font);
+  SDL_FreeSurface(surface);
+  SDL_DestroyTexture(texture);
+
 }
 
 // Returns 1 if you have to continue to the next lvl
@@ -215,6 +224,7 @@ int play(SDL_Renderer *renderer, char fileName[])
                 {
                     case SDLK_ESCAPE:
                         nextLvl = 0;
+                        GAME_MODE = MENU;
                         map[playerPosition.y][playerPosition.x] = PLAYER;
                         saveLevel(map, sceneName, "levels/continue.txt");
                         quit = 1;
@@ -280,9 +290,15 @@ int play(SDL_Renderer *renderer, char fileName[])
         renderText(renderer);
         SDL_RenderPresent(renderer);
 
-        // Slow down the player
-        SDL_Delay(30);
     }
+
+
+    SDL_DestroyTexture(wall);
+    SDL_DestroyTexture(book);
+    SDL_DestroyTexture(player[UP]);
+    SDL_DestroyTexture(player[DOWN]);
+    SDL_DestroyTexture(player[LEFT]);
+    SDL_DestroyTexture(player[RIGHT]);
 
     TTF_Quit();
     return nextLvl;

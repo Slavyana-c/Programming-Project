@@ -1,3 +1,8 @@
+/*
+options.h
+Prototypes of options.c
+*/
+
 #include <SDL2/SDL.h>
 #include "constants.h"
 

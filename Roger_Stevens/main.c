@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
   menu = IMG_LoadTexture(renderer, "images/menu.jpg");
 
   GAME_MODE = MENU;
+
   // Event loop
   while (GAME_MODE != QUIT)
   {
@@ -79,11 +80,13 @@ int main(int argc, char *argv[])
               break;
       }
 
+      // Render the screen
       SDL_RenderClear(renderer);
       SDL_RenderCopy(renderer, menu, NULL, NULL);
       SDL_RenderPresent(renderer);
     }
 
+    // Clear sdl
     SDL_DestroyTexture(menu);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
