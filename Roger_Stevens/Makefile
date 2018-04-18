@@ -33,7 +33,7 @@ clean:
 # dependencies
 
 main.o: main.c constants.h globals.h
-options.o: options.c options.h
-game.o: game.c game.h
-files.o: files.c files.h
-editor.o: editor.c editor.h
+options.o: options.c options.h constants.h globals.h
+game.o: game.c game.h constants.h globals.h
+files.o: files.c files.h constants.h globals.h
+editor.o: editor.c editor.h constants.h globals.h

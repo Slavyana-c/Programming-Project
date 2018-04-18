@@ -26,7 +26,7 @@ void editor(SDL_Renderer *renderer)
     player = IMG_LoadTexture(renderer, "images/mario_bas.gif");
     strcpy(fileName, "levels/custom.txt");
 
-
+    // Set positions
     scenePosition.y = 0;
     scenePosition.x = 0;
     scenePosition.h = SCENE_HEIGHT;
@@ -111,7 +111,6 @@ void editor(SDL_Renderer *renderer)
                         case SDLK_3:
                             currentObject = PLAYER;
                             break;
-
                 }
                 break;
         }

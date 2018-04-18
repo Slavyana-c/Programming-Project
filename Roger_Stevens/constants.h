@@ -24,12 +24,12 @@ Defines the constants for the whole program
     #define BAR_HEIGHT          BLOCK_SIZE
 
     // Text position
-    #define TEXT_Y              WINDOW_HEIGHT - 20
+    #define TEXT_Y              WINDOW_HEIGHT - 28
     #define TEXT_H              20
-    #define TEXT_W              70
+    #define TEXT_W              80
 
     #define LVL_X               20
-    #define MOVES_X             300
+    #define MOVES_X             450
     #define BOOKS_X             600
 
     // Map size in blocks
