@@ -84,11 +84,6 @@ void option(SDL_Renderer *renderer)
             printf("Play custom level.\n");
             strcpy(fileName, "levels/custom.txt");
 
-            // Zero the score and give full lives
-            MOVES = 0;
-            BOOKS = 0;
-            LIVES = 5;
-
             play(renderer, fileName);
             printf("%d\n", GAME_MODE);
             if(GAME_MODE == WIN) ShowWin(renderer);

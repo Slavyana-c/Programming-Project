@@ -11,7 +11,7 @@
 
 void editor(SDL_Renderer *renderer)
 {
-    SDL_Texture *wall = NULL, *book = NULL, *player = NULL, *scene = NULL;
+    SDL_Texture *wall = NULL, *book = NULL, *player = NULL, *scene = NULL, *enemy = NULL;
     SDL_Rect position, scenePosition, mousePosition;
     SDL_Event event;
     char sceneName[20];
@@ -24,6 +24,7 @@ void editor(SDL_Renderer *renderer)
     wall = IMG_LoadTexture(renderer, "images/mur.jpg");
     book = IMG_LoadTexture(renderer, "images/objectif.png");
     player = IMG_LoadTexture(renderer, "images/mario_bas.gif");
+    enemy = IMG_LoadTexture(renderer, "images/net.jpg");
     strcpy(fileName, "levels/custom.txt");
 
     // Set positions
@@ -109,6 +110,9 @@ void editor(SDL_Renderer *renderer)
                             currentObject = BOOK;
                             break;
                         case SDLK_3:
+                            currentObject = ENEMY;
+                            break;
+                        case SDLK_4:
                             currentObject = PLAYER;
                             break;
                 }
@@ -133,6 +137,9 @@ void editor(SDL_Renderer *renderer)
                     case BOOK:
                         SDL_RenderCopy(renderer, book, NULL, &position);
                         break;
+                    case ENEMY:
+                        SDL_RenderCopy(renderer, enemy, NULL, &position);
+                        break;
                     case PLAYER:
                         SDL_RenderCopy(renderer, player, NULL, &position);
                         break;
@@ -151,6 +158,9 @@ void editor(SDL_Renderer *renderer)
                 SDL_RenderCopy(renderer, book, NULL, &mousePosition);
                 break;
 
+            case ENEMY:
+                SDL_RenderCopy(renderer, enemy, NULL, &mousePosition);
+                break;
             case PLAYER:
                 SDL_RenderCopy(renderer, player, NULL, &mousePosition);
                 break;

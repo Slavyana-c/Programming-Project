@@ -42,7 +42,7 @@ Defines the constants for the whole program
 
     // Useful enumerations
     enum {UP, DOWN, LEFT, RIGHT};
-    enum {EMPTY, WALL, BOOK, PLAYER};
+    enum {EMPTY, WALL, BOOK, ENEMY, PLAYER};
     enum {MENU, PLAY, CONTINUE, EDIT, CUSTOM, QUIT, WIN, LOSE};
 
 #endif
