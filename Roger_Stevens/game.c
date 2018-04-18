@@ -81,6 +81,38 @@ void movePlayer(int map[][MAP_WIDTH_BLOCKS], SDL_Rect *pos, int direction)
 
 }
 
+void savedMessage(SDL_Renderer *renderer)
+{
+    SDL_Rect textPosition;
+    char saved[15] = "Saving...";
+
+    // Text position
+    textPosition.y = TEXT_Y;
+    textPosition.h = TEXT_H;
+    textPosition.w = TEXT_W;
+
+    TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 25);
+    if(!font)
+    {
+        printf("TTF_OpenFont error: %s\n", TTF_GetError());
+    }
+
+    // Set color to white
+    SDL_Color color = { 255, 255, 255 };
+
+    textPosition.x = SAVE_X;
+    SDL_Surface * surface = TTF_RenderText_Solid(font,
+    saved, color);
+    SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_RenderCopy(renderer, texture, NULL, &textPosition);
+    SDL_RenderPresent(renderer);
+    SDL_Delay(500);
+
+    TTF_CloseFont(font);
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+}
+
 // Renders the text
 void renderText(SDL_Renderer *renderer)
 {
@@ -225,9 +257,13 @@ int play(SDL_Renderer *renderer, char fileName[])
                     case SDLK_ESCAPE:
                         nextLvl = 0;
                         GAME_MODE = MENU;
-                        map[playerPosition.y][playerPosition.x] = PLAYER;
-                        saveLevel(map, sceneName, "levels/continue.txt");
                         quit = 1;
+                        break;
+
+                    case SDLK_s:
+                        map[playerPosition.y][playerPosition.x] = PLAYER;
+                        savedMessage(renderer);
+                        saveLevel(map, sceneName, "levels/continue.txt");
                         break;
 
                     case SDLK_UP:
