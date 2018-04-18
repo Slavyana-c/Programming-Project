@@ -34,7 +34,7 @@ void movePlayer(int map[][MAP_WIDTH_BLOCKS], SDL_Rect *pos, int direction)
             break;
 
         case DOWN:
-            if (pos->y + 1 > MAP_HEIGHT_BLOCKS)
+            if (pos->y + 1 == MAP_HEIGHT_BLOCKS)
                 break;
             if (map[pos->y + 1][pos->x] == WALL)
                 break;
@@ -64,7 +64,7 @@ void movePlayer(int map[][MAP_WIDTH_BLOCKS], SDL_Rect *pos, int direction)
             break;
 
         case RIGHT:
-            if (pos->x + 1 > MAP_WIDTH_BLOCKS)
+            if (pos->x + 1 == MAP_WIDTH_BLOCKS)
                 break;
             if (map[pos->y][pos->x+1] == WALL)
                 break;
@@ -91,7 +91,7 @@ void savedMessage(SDL_Renderer *renderer)
     textPosition.h = TEXT_H;
     textPosition.w = TEXT_W;
 
-    TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 25);
+    TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 30);
     if(!font)
     {
         printf("TTF_OpenFont error: %s\n", TTF_GetError());
@@ -129,7 +129,7 @@ void renderText(SDL_Renderer *renderer)
   textPosition.h = TEXT_H;
   textPosition.w = TEXT_W;
 
-  TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 25);
+  TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 30);
   if(!font)
   {
       printf("TTF_OpenFont error: %s\n", TTF_GetError());
@@ -316,7 +316,11 @@ int play(SDL_Renderer *renderer, char fileName[])
 
         // Level is finished once you collect the books
          if (!booksLeft)
-             quit = 1;
+         {
+           quit = 1;
+           if(LVL_NUM == ALL_LEVELS || LVL_NUM == 0) GAME_MODE = WIN;
+         }
+
 
         // Render the payer
         position.x = playerPosition.x * BLOCK_SIZE;

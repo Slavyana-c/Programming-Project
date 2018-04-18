@@ -10,6 +10,7 @@ All game options
 #include "globals.h"
 #include "game.h"
 #include "editor.h"
+#include "endgame.h"
 
 // Creates the file name
 void getFile(char fileName[20], int i)
@@ -46,23 +47,30 @@ void option(SDL_Renderer *renderer)
               if(!play(renderer, fileName)) break;
           }
 
+          if(GAME_MODE == WIN) ShowWin(renderer);
+          if(GAME_MODE == LOSE) ShowLose(renderer);
+
           break;
 
         case CONTINUE:
             printf("Loading saved game.\n");
             strcpy(fileName, "levels/continue.txt");
             if(!play(renderer, fileName)) break;
-            if (LVL_NUM == 0) break;
-            LVL_NUM++;
-            for (int i = LVL_NUM; i <= ALL_LEVELS; i++)
+            if (LVL_NUM != 0)
             {
-                GAME_MODE = PLAY;
+              LVL_NUM++;
+              for (int i = LVL_NUM; i <= ALL_LEVELS; i++)
+              {
+                  GAME_MODE = PLAY;
 
-                // Get file name
-                getFile(fileName, i);
+                  // Get file name
+                  getFile(fileName, i);
 
-                if(!play(renderer, fileName)) break;
+                  if(!play(renderer, fileName)) break;
+              }
             }
+            if(GAME_MODE == WIN) ShowWin(renderer);
+            if(GAME_MODE == LOSE) ShowLose(renderer);
 
             break;
 
@@ -74,7 +82,10 @@ void option(SDL_Renderer *renderer)
         case CUSTOM:
             printf("Play custom level.\n");
             strcpy(fileName, "levels/custom.txt");
-            if(!play(renderer, fileName)) break;
+            play(renderer, fileName);
+            printf("%d\n", GAME_MODE);
+            if(GAME_MODE == WIN) ShowWin(renderer);
+            if(GAME_MODE == LOSE) ShowLose(renderer);
             break;
     }
 }

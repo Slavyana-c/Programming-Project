@@ -7,7 +7,7 @@ Defines the constants for the whole program
 #define DEF_CONSTANTS
 
     // Size of a block in pixels
-    #define BLOCK_SIZE          36
+    #define BLOCK_SIZE          40
 
     // Window size
     #define WIDTH_IN_BLOCKS     20
@@ -43,6 +43,6 @@ Defines the constants for the whole program
     // Useful enumerations
     enum {UP, DOWN, LEFT, RIGHT};
     enum {EMPTY, WALL, BOOK, PLAYER};
-    enum {MENU, PLAY, CONTINUE, EDIT, CUSTOM, QUIT};
+    enum {MENU, PLAY, CONTINUE, EDIT, CUSTOM, QUIT, WIN, LOSE};
 
 #endif
