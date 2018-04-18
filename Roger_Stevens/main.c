@@ -11,6 +11,7 @@ Shows the menu
 
 int GAME_MODE;
 int LVL_NUM;
+int LIVES;
 int MOVES;
 int BOOKS;
 

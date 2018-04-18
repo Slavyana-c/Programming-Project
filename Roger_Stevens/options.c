@@ -34,9 +34,10 @@ void option(SDL_Renderer *renderer)
         case PLAY:
           printf("Startig new game.\n");
 
-          // Zero the score
+          // Zero the score and give full lives
           MOVES = 0;
           BOOKS = 0;
+          LIVES = 5;
 
           // Loop through the levels
           for (int i = 1; i <= ALL_LEVELS; i++)
@@ -82,6 +83,12 @@ void option(SDL_Renderer *renderer)
         case CUSTOM:
             printf("Play custom level.\n");
             strcpy(fileName, "levels/custom.txt");
+
+            // Zero the score and give full lives
+            MOVES = 0;
+            BOOKS = 0;
+            LIVES = 5;
+
             play(renderer, fileName);
             printf("%d\n", GAME_MODE);
             if(GAME_MODE == WIN) ShowWin(renderer);

@@ -32,7 +32,7 @@ int loadLevel(int level[][MAP_WIDTH_BLOCKS], char sceneName[], char fileName[])
 
     // Get level and progress
     if(GAME_MODE == PLAY) fscanf(file,"%d", &LVL_NUM);
-    else fscanf(file,"%d %d %d", &LVL_NUM, &MOVES, &BOOKS);
+    else fscanf(file,"%d %d %d %d", &LVL_NUM, &LIVES, &MOVES, &BOOKS);
 
     // Get map data
     while(!feof(file))
@@ -69,7 +69,7 @@ int saveLevel(int level[][MAP_WIDTH_BLOCKS], char sceneName[], char fileName[])
 
     // Save all data about the level
     fprintf(file, "%s\n", sceneName);
-    fprintf(file, "%d %d %d\n", LVL_NUM, MOVES, BOOKS);
+    fprintf(file, "%d %d %d %d\n", LVL_NUM, LIVES, MOVES, BOOKS);
     for (int i = 0 ; i < 16 ; i++)
     {
         for (int j = 0 ; j < 20; j++)
