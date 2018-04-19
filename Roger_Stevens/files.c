@@ -2,13 +2,47 @@
 files.c
 Saves and loads levels from files
 */
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 #include "constants.h"
 #include "globals.h"
+
+// Load images
+void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall, SDL_Texture **book,
+   SDL_Texture **enemy)
+{
+
+    switch (LVL_NUM)
+    {
+      case 1:
+      *wall = IMG_LoadTexture(renderer, "images/mur.jpg");
+      *book = IMG_LoadTexture(renderer, "images/objectif.png");
+      player[DOWN] = IMG_LoadTexture(renderer, "images/mario_bas.gif");
+      player[LEFT] = IMG_LoadTexture(renderer, "images/mario_gauche.gif");
+      player[UP] = IMG_LoadTexture(renderer, "images/mario_haut.gif");
+      player[RIGHT] = IMG_LoadTexture(renderer, "images/mario_droite.gif");
+      *enemy = IMG_LoadTexture(renderer, "images/net.jpg");
+      break;
+
+      case 2:
+      *wall = IMG_LoadTexture(renderer, "images/mur.jpg");
+      *book = IMG_LoadTexture(renderer, "images/objectif.png");
+      player[DOWN] = IMG_LoadTexture(renderer, "images/mario_bas.gif");
+      player[LEFT] = IMG_LoadTexture(renderer, "images/mario_gauche.gif");
+      player[UP] = IMG_LoadTexture(renderer, "images/mario_haut.gif");
+      player[RIGHT] = IMG_LoadTexture(renderer, "images/mario_droite.gif");
+      *enemy = IMG_LoadTexture(renderer, "images/net.jpg");
+      break;
+    }
+
+
+
+}
+
 
 // Load the level, return 1 if successful
 int loadLevel(int level[][MAP_WIDTH_BLOCKS], char sceneName[], char fileName[])

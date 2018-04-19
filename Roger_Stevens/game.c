@@ -13,6 +13,8 @@ Playing the game
 #include "files.h"
 
 
+
+
 // Display dying animation and reduce lives
 void playerDead(SDL_Renderer *renderer, SDL_Rect pos, SDL_Texture *playerNow, SDL_Texture *enemy)
 {
@@ -219,15 +221,6 @@ int play(SDL_Renderer *renderer, char fileName[])
 
     TTF_Init();
 
-    // Load images
-    wall = IMG_LoadTexture(renderer, "images/mur.jpg");
-    book = IMG_LoadTexture(renderer, "images/objectif.png");
-    player[DOWN] = IMG_LoadTexture(renderer, "images/mario_bas.gif");
-    player[LEFT] = IMG_LoadTexture(renderer, "images/mario_gauche.gif");
-    player[UP] = IMG_LoadTexture(renderer, "images/mario_haut.gif");
-    player[RIGHT] = IMG_LoadTexture(renderer, "images/mario_droite.gif");
-    enemy = IMG_LoadTexture(renderer, "images/net.jpg");
-
     // Set positions
     scenePosition.y = 0;
     scenePosition.x = 0;
@@ -242,8 +235,6 @@ int play(SDL_Renderer *renderer, char fileName[])
     playerPosition.x = 0;
     playerPosition.y = 0;
 
-    // Showing the player looking down
-    playerNow = player[DOWN];
 
     // Loading the level
     if (!loadLevel(map, sceneName, fileName))
@@ -251,9 +242,15 @@ int play(SDL_Renderer *renderer, char fileName[])
         printf("%s Problem\n", fileName);
         exit(EXIT_FAILURE);
     }
+    // Load images
+    loadImages(renderer, player, &wall, &book, &enemy);
 
-    // Set the scene
+  //  Set the scene
     scene = IMG_LoadTexture(renderer, sceneName);
+
+    // Showing the player looking down
+    playerNow = player[DOWN];
+
 
     // Find the player
     for (i = 0 ; i < MAP_HEIGHT_BLOCKS ; i++)
