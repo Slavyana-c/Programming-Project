@@ -10,7 +10,7 @@ Prototypes of files.c
 #define DEF_FILES
 
 void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall, SDL_Texture **book,
-   SDL_Texture **enemy);
+   SDL_Texture **enemy, SDL_Texture **tiles);
     int loadLevel(int level[][MAP_WIDTH_BLOCKS], char sceneName[], char fileName[]);
     int saveLevel(int level[][MAP_WIDTH_BLOCKS], char sceneName[], char fileName[]);
 

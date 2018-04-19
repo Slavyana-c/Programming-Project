@@ -13,14 +13,15 @@ Saves and loads levels from files
 
 // Load images
 void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall, SDL_Texture **book,
-   SDL_Texture **enemy)
+   SDL_Texture **enemy, SDL_Texture **tiles)
 {
-    *book = IMG_LoadTexture(renderer, "images/book.jpg");
-    player[DOWN] = IMG_LoadTexture(renderer, "images/mario_bas.gif");
-    player[LEFT] = IMG_LoadTexture(renderer, "images/mario_gauche.gif");
-    player[UP] = IMG_LoadTexture(renderer, "images/mario_haut.gif");
-    player[RIGHT] = IMG_LoadTexture(renderer, "images/mario_droite.gif");
-    *enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
+    *book = IMG_LoadTexture(renderer, "images/book.png");
+    player[DOWN] = IMG_LoadTexture(renderer, "images/down.png");
+    player[LEFT] = IMG_LoadTexture(renderer, "images/left.png");
+    player[UP] = IMG_LoadTexture(renderer, "images/up.png");
+    player[RIGHT] = IMG_LoadTexture(renderer, "images/right.png");
+    *enemy = IMG_LoadTexture(renderer, "images/NETFLIX.png");
+    *tiles = IMG_LoadTexture(renderer, "images/wtiles.jpg");
     switch (LVL_NUM)
     {
       case 0:

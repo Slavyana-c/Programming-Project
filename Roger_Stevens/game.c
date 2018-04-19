@@ -210,7 +210,7 @@ void renderText(SDL_Renderer *renderer)
 int play(SDL_Renderer *renderer, char fileName[])
 {
     SDL_Texture *player[4] = {NULL};
-    SDL_Texture *wall = NULL, *book = NULL, *playerNow = NULL, *enemy = NULL, *scene = NULL;
+    SDL_Texture *wall = NULL, *book = NULL, *playerNow = NULL, *enemy = NULL, *scene = NULL, *tiles = NULL;
     SDL_Rect position, playerPosition, scenePosition;
     int nextLvl = 1, quit = 0, booksLeft = 0, i = 0, j = 0;
     char sceneName[20] = {0};
@@ -242,7 +242,7 @@ int play(SDL_Renderer *renderer, char fileName[])
         exit(EXIT_FAILURE);
     }
     // Load images
-    loadImages(renderer, player, &wall, &book, &enemy);
+    loadImages(renderer, player, &wall, &book, &enemy, &tiles);
 
   //  Set the scene
     scene = IMG_LoadTexture(renderer, sceneName);
@@ -288,8 +288,9 @@ int play(SDL_Renderer *renderer, char fileName[])
 
                     case SDLK_s:
                         map[playerPosition.y][playerPosition.x] = PLAYER;
-                        savedMessage(renderer);
                         saveLevel(map, sceneName, "levels/continue.txt");
+                        savedMessage(renderer);
+                        map[playerPosition.y][playerPosition.x] = EMPTY;
                         break;
 
                     case SDLK_UP:
@@ -335,11 +336,16 @@ int play(SDL_Renderer *renderer, char fileName[])
                         SDL_RenderCopy(renderer, wall, NULL, &position);
                         break;
                     case BOOK:
+                        SDL_RenderCopy(renderer, tiles, NULL, &position);
                         SDL_RenderCopy(renderer, book, NULL, &position);
                         booksLeft = 1;
                         break;
                     case ENEMY:
+                        SDL_RenderCopy(renderer, tiles, NULL, &position);
                         SDL_RenderCopy(renderer, enemy, NULL, &position);
+                        break;
+                    case EMPTY:
+                        SDL_RenderCopy(renderer, tiles, NULL, &position);
                         break;
                 }
             }
