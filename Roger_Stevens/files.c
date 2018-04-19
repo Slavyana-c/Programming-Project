@@ -18,24 +18,34 @@ void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall
 
     switch (LVL_NUM)
     {
-      case 1:
-      *wall = IMG_LoadTexture(renderer, "images/mur.jpg");
-      *book = IMG_LoadTexture(renderer, "images/objectif.png");
+      case 0:
+      *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
+      *book = IMG_LoadTexture(renderer, "images/book.jpg");
       player[DOWN] = IMG_LoadTexture(renderer, "images/mario_bas.gif");
       player[LEFT] = IMG_LoadTexture(renderer, "images/mario_gauche.gif");
       player[UP] = IMG_LoadTexture(renderer, "images/mario_haut.gif");
       player[RIGHT] = IMG_LoadTexture(renderer, "images/mario_droite.gif");
-      *enemy = IMG_LoadTexture(renderer, "images/net.jpg");
+      *enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
+      break;
+
+      case 1:
+      *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
+      *book = IMG_LoadTexture(renderer, "images/book.jpg");
+      player[DOWN] = IMG_LoadTexture(renderer, "images/mario_bas.gif");
+      player[LEFT] = IMG_LoadTexture(renderer, "images/mario_gauche.gif");
+      player[UP] = IMG_LoadTexture(renderer, "images/mario_haut.gif");
+      player[RIGHT] = IMG_LoadTexture(renderer, "images/mario_droite.gif");
+      *enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
       break;
 
       case 2:
-      *wall = IMG_LoadTexture(renderer, "images/mur.jpg");
-      *book = IMG_LoadTexture(renderer, "images/objectif.png");
+      *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
+      *book = IMG_LoadTexture(renderer, "images/book.jpg");
       player[DOWN] = IMG_LoadTexture(renderer, "images/mario_bas.gif");
       player[LEFT] = IMG_LoadTexture(renderer, "images/mario_gauche.gif");
       player[UP] = IMG_LoadTexture(renderer, "images/mario_haut.gif");
       player[RIGHT] = IMG_LoadTexture(renderer, "images/mario_droite.gif");
-      *enemy = IMG_LoadTexture(renderer, "images/net.jpg");
+      *enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
       break;
     }
 

@@ -21,10 +21,10 @@ void editor(SDL_Renderer *renderer)
     int map[MAP_HEIGHT_BLOCKS][MAP_WIDTH_BLOCKS] = {{0}};
     int currentObject = WALL;
 
-    wall = IMG_LoadTexture(renderer, "images/mur.jpg");
-    book = IMG_LoadTexture(renderer, "images/objectif.png");
+    wall = IMG_LoadTexture(renderer, "images/wall.jpg");
+    book = IMG_LoadTexture(renderer, "images/book.jpg");
     player = IMG_LoadTexture(renderer, "images/mario_bas.gif");
-    enemy = IMG_LoadTexture(renderer, "images/net.jpg");
+    enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
     strcpy(fileName, "levels/custom.txt");
 
     // Set positions

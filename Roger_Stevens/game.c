@@ -373,6 +373,7 @@ int play(SDL_Renderer *renderer, char fileName[])
             quit = 1;
             nextLvl = 0;
           }
+
         }
 
     }
