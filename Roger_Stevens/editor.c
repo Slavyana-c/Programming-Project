@@ -3,11 +3,13 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 #include "constants.h"
 #include "editor.h"
 #include "files.h"
 #include "globals.h"
+#include "game.h"
 
 void editor(SDL_Renderer *renderer)
 {
@@ -26,6 +28,8 @@ void editor(SDL_Renderer *renderer)
     player = IMG_LoadTexture(renderer, "images/mario_bas.gif");
     enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
     strcpy(fileName, "levels/custom.txt");
+
+    TTF_Init();
 
     // Set positions
     scenePosition.y = 0;
@@ -51,8 +55,7 @@ void editor(SDL_Renderer *renderer)
     // Event loop
     while (!quit)
     {
-      SDL_RenderClear(renderer);
-      SDL_RenderCopy(renderer, scene, NULL, &scenePosition);
+
 
         SDL_PollEvent(&event);
         switch(event.type)
@@ -114,13 +117,14 @@ void editor(SDL_Renderer *renderer)
                 switch(event.key.keysym.sym)
                 {
                     case SDLK_ESCAPE:
-                        saveLevel(map, sceneName, fileName);
                         quit = 1;
+                        GAME_MODE = MENU;
                         break;
 
                         case SDLK_1:
                             currentObject = WALL;
                             break;
+
                         case SDLK_2:
                             currentObject = BOOK;
                             break;
@@ -130,10 +134,17 @@ void editor(SDL_Renderer *renderer)
                         case SDLK_4:
                             currentObject = PLAYER;
                             break;
+
+                        case SDLK_s:
+                            saveLevel(map, sceneName, fileName);
+                            savedMessage(renderer);
+                            break;
                 }
                 break;
         }
 
+        SDL_RenderClear(renderer);
+        SDL_RenderCopy(renderer, scene, NULL, &scenePosition);
 
         // Render map
         for (i = 0 ; i < MAP_HEIGHT_BLOCKS ; i++)
@@ -187,4 +198,5 @@ void editor(SDL_Renderer *renderer)
     SDL_DestroyTexture(book);
     SDL_DestroyTexture(player);
     SDL_DestroyTexture(enemy);
+    TTF_Quit();
 }

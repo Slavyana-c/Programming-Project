@@ -39,7 +39,7 @@ Defines the constants for the whole program
     #define MAP_HEIGHT_BLOCKS   (HEIGHT_IN_BLOCKS - 3)
 
     // Levels
-    #define ALL_LEVELS          2
+    #define ALL_LEVELS          9
 
     // Useful enumerations
     enum {UP, DOWN, LEFT, RIGHT};
