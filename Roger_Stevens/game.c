@@ -13,10 +13,20 @@ Playing the game
 #include "files.h"
 
 
-
-void playerDead()
+// Display dying animation and reduce lives
+void playerDead(SDL_Renderer *renderer, SDL_Rect pos, SDL_Texture *playerNow, SDL_Texture *enemy)
 {
+  for (int i = 0; i < 3; i++)
+  {
+      SDL_RenderCopy(renderer, playerNow, NULL, &pos);
+      SDL_RenderPresent(renderer);
+            SDL_Delay(100);
+      SDL_RenderCopy(renderer, enemy, NULL, &pos);
+      SDL_RenderPresent(renderer);
+            SDL_Delay(100);
+  }
 
+  LIVES--;
 }
 
 // Move the player
@@ -85,7 +95,6 @@ void movePlayer(int map[][MAP_WIDTH_BLOCKS], SDL_Rect *pos, int direction)
             }
             break;
     }
-
 }
 
 
@@ -310,6 +319,8 @@ int play(SDL_Renderer *renderer, char fileName[])
              break;
         }
 
+
+
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, scene, NULL, &scenePosition);
         booksLeft = 0;
@@ -353,6 +364,19 @@ int play(SDL_Renderer *renderer, char fileName[])
 
         renderText(renderer);
         SDL_RenderPresent(renderer);
+
+        if(map[playerPosition.y][playerPosition.x] == ENEMY)
+        {
+          map[playerPosition.y][playerPosition.x] = EMPTY;
+          playerDead(renderer, position, playerNow, enemy);
+
+          if(LIVES == 0)
+          {
+            GAME_MODE = LOSE;
+            quit = 1;
+            nextLvl = 0;
+          }
+        }
 
     }
 
