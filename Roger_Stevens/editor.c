@@ -65,12 +65,21 @@ void editor(SDL_Renderer *renderer)
                 if (event.button.button == SDL_BUTTON_LEFT) // Add object
                 {
                     // Calculate mouse location
-                    map[(event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE][event.button.x / BLOCK_SIZE] = currentObject;
+                    if((event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE >= 0 && (event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE < MAP_HEIGHT_BLOCKS)
+                    {
+                      map[(event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE][event.button.x /BLOCK_SIZE] = currentObject;
+                    }
+
                     leftClick = 1;
                 }
+
                 else if (event.button.button == SDL_BUTTON_RIGHT) // Remove object
                 {
-                    map[(event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE][event.button.x /BLOCK_SIZE] = EMPTY;
+                    if((event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE > 0 && (event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE < MAP_HEIGHT_BLOCKS)
+                    {
+                      map[(event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE][event.button.x /BLOCK_SIZE] = EMPTY;
+                    }
+
                     rightClick = 1;
                 }
                 break;
@@ -87,11 +96,17 @@ void editor(SDL_Renderer *renderer)
                 mousePosition.y = event.motion.y - 20;
                 if (leftClick)
                 {
-                    map[(event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE][event.motion.x / BLOCK_SIZE] = currentObject;
+                  if((event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE >= 0 && (event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE < MAP_HEIGHT_BLOCKS)
+                  {
+                    map[(event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE][event.button.x /BLOCK_SIZE] = currentObject;
+                  }
                 }
                 else if (rightClick)
                 {
-                    map[(event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE][event.motion.x / BLOCK_SIZE] = EMPTY;
+                  if((event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE >= 0 && (event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE < MAP_HEIGHT_BLOCKS)
+                  {
+                    map[(event.motion.y - SCENE_HEIGHT) / BLOCK_SIZE][event.button.x /BLOCK_SIZE] = EMPTY;
+                  }
                 }
                 break;
 

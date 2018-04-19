@@ -160,8 +160,7 @@ void renderText(SDL_Renderer *renderer)
   SDL_Color color = { 255, 255, 255 };
 
   // Set the level
-  sprintf(numstr, "%d", LVL_NUM);
-  strcat(fixedLevel, numstr);
+  strcat(fixedLevel, LVL_TEXT);
 
   sprintf(numstr, "%d", MOVES);
   strcat(fixedMoves, numstr);

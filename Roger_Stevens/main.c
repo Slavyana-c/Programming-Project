@@ -10,6 +10,7 @@ Shows the menu
 #include "options.h"
 
 int GAME_MODE;
+char LVL_TEXT[20];
 int LVL_NUM;
 int LIVES;
 int MOVES;

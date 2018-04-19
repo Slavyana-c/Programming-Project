@@ -15,37 +15,67 @@ Saves and loads levels from files
 void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall, SDL_Texture **book,
    SDL_Texture **enemy)
 {
-
+    *book = IMG_LoadTexture(renderer, "images/book.jpg");
+    player[DOWN] = IMG_LoadTexture(renderer, "images/mario_bas.gif");
+    player[LEFT] = IMG_LoadTexture(renderer, "images/mario_gauche.gif");
+    player[UP] = IMG_LoadTexture(renderer, "images/mario_haut.gif");
+    player[RIGHT] = IMG_LoadTexture(renderer, "images/mario_droite.gif");
+    *enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
     switch (LVL_NUM)
     {
       case 0:
       *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
-      *book = IMG_LoadTexture(renderer, "images/book.jpg");
-      player[DOWN] = IMG_LoadTexture(renderer, "images/mario_bas.gif");
-      player[LEFT] = IMG_LoadTexture(renderer, "images/mario_gauche.gif");
-      player[UP] = IMG_LoadTexture(renderer, "images/mario_haut.gif");
-      player[RIGHT] = IMG_LoadTexture(renderer, "images/mario_droite.gif");
-      *enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
+      strcpy(LVL_TEXT, "Custom");
       break;
 
       case 1:
       *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
-      *book = IMG_LoadTexture(renderer, "images/book.jpg");
-      player[DOWN] = IMG_LoadTexture(renderer, "images/mario_bas.gif");
-      player[LEFT] = IMG_LoadTexture(renderer, "images/mario_gauche.gif");
-      player[UP] = IMG_LoadTexture(renderer, "images/mario_haut.gif");
-      player[RIGHT] = IMG_LoadTexture(renderer, "images/mario_droite.gif");
-      *enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
+      strcpy(LVL_TEXT, "5");
       break;
 
       case 2:
       *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
-      *book = IMG_LoadTexture(renderer, "images/book.jpg");
-      player[DOWN] = IMG_LoadTexture(renderer, "images/mario_bas.gif");
-      player[LEFT] = IMG_LoadTexture(renderer, "images/mario_gauche.gif");
-      player[UP] = IMG_LoadTexture(renderer, "images/mario_haut.gif");
-      player[RIGHT] = IMG_LoadTexture(renderer, "images/mario_droite.gif");
-      *enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
+      strcpy(LVL_TEXT, "8");
+      break;
+
+      case 3:
+      *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
+      strcpy(LVL_TEXT, "2");
+      break;
+
+      case 4:
+      *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
+      strcpy(LVL_TEXT, "12");
+      break;
+
+      case 5:
+      *wall = IMG_LoadTexture(renderer, "images/red_wall.jpg");
+      strcpy(LVL_TEXT, "-3");
+      break;
+
+      case 6:
+      *wall = IMG_LoadTexture(renderer, "images/pond_wall.jpg");
+      strcpy(LVL_TEXT, "Duck pond");
+      break;
+
+      case 7:
+      *wall = IMG_LoadTexture(renderer, "images/lava_wall.jpg");
+      strcpy(LVL_TEXT, "-666");
+      break;
+
+      case 8:
+      *wall = IMG_LoadTexture(renderer, "images/grass_wall.jpg");
+      strcpy(LVL_TEXT, "999");
+      break;
+
+      case 9:
+      *wall = IMG_LoadTexture(renderer, "images/grass_wall.jpg");
+      strcpy(LVL_TEXT, "???");
+      break;
+
+      case 10:
+      *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
+      strcpy(LVL_TEXT, "Long room");
       break;
     }
 
