@@ -13,7 +13,7 @@
 
 void editor(SDL_Renderer *renderer)
 {
-    SDL_Texture *wall = NULL, *book = NULL, *player = NULL, *scene = NULL, *enemy = NULL;
+    SDL_Texture *wall = NULL, *book = NULL, *player = NULL, *scene = NULL, *enemy = NULL, *tiles = NULL;
     SDL_Rect position, scenePosition, mousePosition;
     SDL_Event event;
     char sceneName[20];
@@ -23,10 +23,12 @@ void editor(SDL_Renderer *renderer)
     int map[MAP_HEIGHT_BLOCKS][MAP_WIDTH_BLOCKS] = {{0}};
     int currentObject = WALL;
 
-    wall = IMG_LoadTexture(renderer, "images/wall.jpg");
-    book = IMG_LoadTexture(renderer, "images/book.jpg");
-    player = IMG_LoadTexture(renderer, "images/mario_bas.gif");
+    book = IMG_LoadTexture(renderer, "images/book.png");
+    player= IMG_LoadTexture(renderer, "images/down.png");
     enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
+    tiles = IMG_LoadTexture(renderer, "images/wtiles.jpg");
+    wall = IMG_LoadTexture(renderer, "images/wall.jpg");
+
     strcpy(fileName, "levels/custom.txt");
 
     TTF_Init();
@@ -51,6 +53,7 @@ void editor(SDL_Renderer *renderer)
     }
 
     scene = IMG_LoadTexture(renderer, sceneName);
+
 
     // Event loop
     while (!quit)
@@ -161,14 +164,19 @@ void editor(SDL_Renderer *renderer)
                         break;
 
                     case BOOK:
+                        SDL_RenderCopy(renderer, tiles, NULL, &position);
                         SDL_RenderCopy(renderer, book, NULL, &position);
                         break;
                     case ENEMY:
                         SDL_RenderCopy(renderer, enemy, NULL, &position);
                         break;
                     case PLAYER:
+                        SDL_RenderCopy(renderer, tiles, NULL, &position);
                         SDL_RenderCopy(renderer, player, NULL, &position);
                         break;
+
+                    case EMPTY:
+                      SDL_RenderCopy(renderer, tiles, NULL, &position);
                 }
             }
         }

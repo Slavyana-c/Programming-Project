@@ -7,7 +7,7 @@ Defines the constants for the whole program
 #define DEF_CONSTANTS
 
     // Size of a block in pixels
-    #define BLOCK_SIZE          40
+    #define BLOCK_SIZE          42
 
     // Window size
     #define WIDTH_IN_BLOCKS     20
@@ -30,16 +30,16 @@ Defines the constants for the whole program
 
     #define LVL_X               20
     #define LIVES_X             200
-    #define MOVES_X             450
-    #define BOOKS_X             600
-    #define SAVE_X              300
+    #define MOVES_X             600
+    #define BOOKS_X             700
+    #define SAVE_X              WINDOW_WIDTH / 2
 
     // Map size in blocks
     #define MAP_WIDTH_BLOCKS    WIDTH_IN_BLOCKS
     #define MAP_HEIGHT_BLOCKS   (HEIGHT_IN_BLOCKS - 3)
 
     // Levels
-    #define ALL_LEVELS          9
+    #define ALL_LEVELS          10
 
     // Useful enumerations
     enum {UP, DOWN, LEFT, RIGHT};

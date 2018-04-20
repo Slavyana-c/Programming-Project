@@ -111,7 +111,7 @@ void savedMessage(SDL_Renderer *renderer)
     textPosition.h = TEXT_H;
     textPosition.w = TEXT_W;
 
-    TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 30);
+    TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 50);
     if(!font)
     {
         printf("TTF_OpenFont error: %s\n", TTF_GetError());
@@ -150,7 +150,7 @@ void renderText(SDL_Renderer *renderer)
   textPosition.h = TEXT_H;
   textPosition.w = TEXT_W;
 
-  TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 30);
+  TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 40);
   if(!font)
   {
       printf("TTF_OpenFont error: %s\n", TTF_GetError());

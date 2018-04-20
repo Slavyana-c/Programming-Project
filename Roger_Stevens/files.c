@@ -20,10 +20,10 @@ void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall
     player[LEFT] = IMG_LoadTexture(renderer, "images/left.png");
     player[UP] = IMG_LoadTexture(renderer, "images/up.png");
     player[RIGHT] = IMG_LoadTexture(renderer, "images/right.png");
-    *enemy = IMG_LoadTexture(renderer, "images/NETFLIX.png");
+    *enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
     *tiles = IMG_LoadTexture(renderer, "images/wtiles.jpg");
     switch (LVL_NUM)
-    {
+{
       case 0:
       *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
       strcpy(LVL_TEXT, "Custom");
