@@ -13,7 +13,7 @@ Saves and loads levels from files
 
 // Load images
 void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall, SDL_Texture **book,
-   SDL_Texture **enemy, SDL_Texture **tiles)
+   SDL_Texture **enemy, SDL_Texture **tiles, SDL_Texture **shadow)
 {
     *book = IMG_LoadTexture(renderer, "images/book.png");
     player[DOWN] = IMG_LoadTexture(renderer, "images/down.png");
@@ -22,6 +22,7 @@ void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall
     player[RIGHT] = IMG_LoadTexture(renderer, "images/right.png");
     *enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
     *tiles = IMG_LoadTexture(renderer, "images/wtiles.jpg");
+    *shadow = IMG_LoadTexture(renderer, "images/shadow_wall.jpg");
     switch (LVL_NUM)
 {
       case 0:
@@ -56,7 +57,7 @@ void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall
 
       case 6:
       *wall = IMG_LoadTexture(renderer, "images/pond_wall.jpg");
-      strcpy(LVL_TEXT, "Duck pond");
+      strcpy(LVL_TEXT, "Pond");
       break;
 
       case 7:
@@ -84,6 +85,47 @@ void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall
 
 }
 
+
+void highScore()
+{
+    int bestMoves, bestBooks;
+      FILE* file = NULL;
+      file = fopen("levels/scores.txt", "r");
+      if (file == NULL)
+      {
+          printf("Can't read file \n");
+          return;
+      }
+
+      fscanf(file,"%d %d", &bestMoves, &bestBooks);
+      if(GAME_MODE == WIN && LVL_NUM != 0)
+      {
+        if(MOVES < bestMoves) bestMoves = MOVES;
+        bestBooks = BOOKS;
+      }
+      else if(GAME_MODE == LOSE && LVL_NUM != 0)
+      {
+        if(BOOKS > bestBooks) bestBooks = BOOKS;
+      }
+
+      fclose(file);
+
+
+      file = fopen("levels/scores.txt", "w");
+      if (file == NULL)
+      {
+          printf("Can't write in file\n");
+          return;
+      }
+
+
+      //showScore(bestBooks, bestMoves);
+      printf("saved score\n");
+      fprintf(file, "%d %d", bestMoves, bestBooks);
+
+      fclose(file);
+
+}
 
 // Load the level, return 1 if successful
 int loadLevel(int level[][MAP_WIDTH_BLOCKS], char sceneName[], char fileName[])

@@ -11,8 +11,7 @@ Playing the game
 #include "globals.h"
 #include "constants.h"
 #include "files.h"
-
-
+#include "texts.h"
 
 
 // Display dying animation and reduce lives
@@ -100,125 +99,27 @@ void movePlayer(int map[][MAP_WIDTH_BLOCKS], SDL_Rect *pos, int direction)
 }
 
 
-// Writes saving..
-void savedMessage(SDL_Renderer *renderer)
-{
-    SDL_Rect textPosition;
-    char saved[15] = "Saving...";
-
-    // Text position
-    textPosition.y = TEXT_Y;
-    textPosition.h = TEXT_H;
-    textPosition.w = TEXT_W;
-
-    TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 50);
-    if(!font)
-    {
-        printf("TTF_OpenFont error: %s\n", TTF_GetError());
-    }
-
-    // Set color to white
-    SDL_Color color = { 255, 255, 255 };
-
-    textPosition.x = SAVE_X;
-    SDL_Surface * surface = TTF_RenderText_Solid(font,
-    saved, color);
-    SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_RenderCopy(renderer, texture, NULL, &textPosition);
-    SDL_RenderPresent(renderer);
-    SDL_Delay(500);
-
-    TTF_CloseFont(font);
-    SDL_FreeSurface(surface);
-    SDL_DestroyTexture(texture);
-}
-
-// Renders the text
-void renderText(SDL_Renderer *renderer)
-{
-  SDL_Rect textPosition;
-  char fixedMoves[20] = {0}, fixedBooks[20] = {0},
-  fixedLevel[20] = {0}, fixedLives[20], numstr[5] = {0};
-
-  strcpy(fixedLevel, "Level: ");
-  strcpy(fixedMoves, "Moves: ");
-  strcpy(fixedBooks, "Books: ");
-  strcpy(fixedLives, "Lives: ");
-
-  // Set text position
-  textPosition.y = TEXT_Y;
-  textPosition.h = TEXT_H;
-  textPosition.w = TEXT_W;
-
-  TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 40);
-  if(!font)
-  {
-      printf("TTF_OpenFont error: %s\n", TTF_GetError());
-  }
-
-  // Set color to white
-  SDL_Color color = { 255, 255, 255 };
-
-  // Set the level
-  strcat(fixedLevel, LVL_TEXT);
-
-  sprintf(numstr, "%d", MOVES);
-  strcat(fixedMoves, numstr);
-
-  sprintf(numstr, "%d", BOOKS);
-  strcat(fixedBooks, numstr);
-
-  sprintf(numstr, "%d", LIVES);
-  strcat(fixedLives, numstr);
-
-  // Copy to renderer
-  textPosition.x = LVL_X;
-  SDL_Surface * surface = TTF_RenderText_Solid(font,
-  fixedLevel, color);
-  SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
-  SDL_RenderCopy(renderer, texture, NULL, &textPosition);
-
-  textPosition.x = LIVES_X;
-  surface = TTF_RenderText_Solid(font,
-  fixedLives, color);
-  texture = SDL_CreateTextureFromSurface(renderer, surface);
-  SDL_RenderCopy(renderer, texture, NULL, &textPosition);
-
-
-  textPosition.x = MOVES_X;
-  surface = TTF_RenderText_Solid(font,
-  fixedMoves, color);
-  texture = SDL_CreateTextureFromSurface(renderer, surface);
-
-  SDL_RenderCopy(renderer, texture, NULL, &textPosition);
-
-
-  textPosition.x = BOOKS_X;
-  surface = TTF_RenderText_Solid(font,
-  fixedBooks, color);
-  texture = SDL_CreateTextureFromSurface(renderer, surface);
-
-  SDL_RenderCopy(renderer, texture, NULL, &textPosition);
-
-  TTF_CloseFont(font);
-  SDL_FreeSurface(surface);
-  SDL_DestroyTexture(texture);
-
-}
-
 // Returns 1 if you have to continue to the next lvl
 int play(SDL_Renderer *renderer, char fileName[])
 {
     SDL_Texture *player[4] = {NULL};
-    SDL_Texture *wall = NULL, *book = NULL, *playerNow = NULL, *enemy = NULL, *scene = NULL, *tiles = NULL;
+    SDL_Texture *wall = NULL, *book = NULL, *playerNow = NULL, *enemy = NULL, *scene = NULL, *tiles = NULL, *shadow = NULL;
     SDL_Rect position, playerPosition, scenePosition;
     int nextLvl = 1, quit = 0, booksLeft = 0, i = 0, j = 0;
     char sceneName[20] = {0};
     SDL_Event event;
 
+        TTF_Init();
+
+        TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 50);
+        if(!font)
+        {
+            printf("TTF_OpenFont error: %s\n", TTF_GetError());
+        }
+
     int map[MAP_HEIGHT_BLOCKS][MAP_WIDTH_BLOCKS] = {{0}};
 
-    TTF_Init();
+
 
     // Set positions
     scenePosition.y = 0;
@@ -242,7 +143,7 @@ int play(SDL_Renderer *renderer, char fileName[])
         exit(EXIT_FAILURE);
     }
     // Load images
-    loadImages(renderer, player, &wall, &book, &enemy, &tiles);
+    loadImages(renderer, player, &wall, &book, &enemy, &tiles, &shadow);
 
   //  Set the scene
     scene = IMG_LoadTexture(renderer, sceneName);
@@ -289,7 +190,7 @@ int play(SDL_Renderer *renderer, char fileName[])
                     case SDLK_s:
                         map[playerPosition.y][playerPosition.x] = PLAYER;
                         saveLevel(map, sceneName, "levels/continue.txt");
-                        savedMessage(renderer);
+                        savedMessage(renderer, font);
                         map[playerPosition.y][playerPosition.x] = EMPTY;
                         break;
 
@@ -333,7 +234,12 @@ int play(SDL_Renderer *renderer, char fileName[])
                 switch(map[i][j])
                 {
                     case WALL:
-                        SDL_RenderCopy(renderer, wall, NULL, &position);
+                        if((i != MAP_HEIGHT_BLOCKS - 1)
+                          && (map[i + 1][j] != WALL && map[i + 1][j] != ENEMY))
+                          {
+                            SDL_RenderCopy(renderer, shadow, NULL, &position);
+                          }
+                        else SDL_RenderCopy(renderer, wall, NULL, &position);
                         break;
                     case BOOK:
                         SDL_RenderCopy(renderer, tiles, NULL, &position);
@@ -364,7 +270,7 @@ int play(SDL_Renderer *renderer, char fileName[])
         position.y = SCENE_HEIGHT + playerPosition.y * BLOCK_SIZE;
         SDL_RenderCopy(renderer, playerNow, NULL, &position);
 
-        renderText(renderer);
+        renderText(renderer, font);
         SDL_RenderPresent(renderer);
 
         if(map[playerPosition.y][playerPosition.x] == ENEMY)
@@ -390,6 +296,10 @@ int play(SDL_Renderer *renderer, char fileName[])
     SDL_DestroyTexture(player[DOWN]);
     SDL_DestroyTexture(player[LEFT]);
     SDL_DestroyTexture(player[RIGHT]);
+    SDL_DestroyTexture(enemy);
+    SDL_DestroyTexture(shadow);
+
+    TTF_CloseFont(font);
 
     TTF_Quit();
     return nextLvl;

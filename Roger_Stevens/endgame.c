@@ -3,6 +3,7 @@
 
 #include "constants.h"
 #include "globals.h"
+#include "files.h"
 
 void ShowWin(SDL_Renderer *renderer)
 {
@@ -10,6 +11,8 @@ void ShowWin(SDL_Renderer *renderer)
     SDL_Event event;
 
     win = IMG_LoadTexture(renderer, "images/win.jpg");
+
+    highScore();
 
     // Event loop
     while (GAME_MODE != MENU)
@@ -41,6 +44,7 @@ void ShowLose(SDL_Renderer *renderer)
   SDL_Texture *lose = NULL;
   SDL_Event event;
 
+    highScore();
   lose = IMG_LoadTexture(renderer, "images/lose.jpg");
 
   // Event loop

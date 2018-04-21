@@ -13,7 +13,7 @@
 
 void editor(SDL_Renderer *renderer)
 {
-    SDL_Texture *wall = NULL, *book = NULL, *player = NULL, *scene = NULL, *enemy = NULL, *tiles = NULL;
+    SDL_Texture *wall = NULL, *book = NULL, *player = NULL, *scene = NULL, *enemy = NULL, *tiles = NULL, *shadow = NULL;
     SDL_Rect position, scenePosition, mousePosition;
     SDL_Event event;
     char sceneName[20];
@@ -28,6 +28,7 @@ void editor(SDL_Renderer *renderer)
     enemy = IMG_LoadTexture(renderer, "images/NETFLIX.jpg");
     tiles = IMG_LoadTexture(renderer, "images/wtiles.jpg");
     wall = IMG_LoadTexture(renderer, "images/wall.jpg");
+    shadow = IMG_LoadTexture(renderer, "images/shadow_wall.jpg");
 
     strcpy(fileName, "levels/custom.txt");
 
@@ -160,7 +161,12 @@ void editor(SDL_Renderer *renderer)
                 switch(map[i][j])
                 {
                     case WALL:
-                        SDL_RenderCopy(renderer, wall, NULL, &position);
+                    if((i != MAP_HEIGHT_BLOCKS - 1)
+                      && (map[i + 1][j] != WALL && map[i + 1][j] != ENEMY))
+                      {
+                        SDL_RenderCopy(renderer, shadow, NULL, &position);
+                      }
+                    else SDL_RenderCopy(renderer, wall, NULL, &position);
                         break;
 
                     case BOOK:
