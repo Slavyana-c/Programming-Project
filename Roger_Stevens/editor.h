@@ -1,3 +1,8 @@
+/*
+editor.h
+Prototypes for editor.c
+*/
+
 #ifndef DEF_EDIT
 #define DEF_EDIT
 

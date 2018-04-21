@@ -41,8 +41,12 @@ void showEnd(SDL_Renderer *renderer)
 
       // Go to menu
       case SDL_KEYDOWN:
-      GAME_MODE = MENU;
-      break;
+      switch(event.key.keysym.sym)
+      {
+        case SDLK_ESCAPE:
+        GAME_MODE = MENU;
+        break;
+      }
     }
 
     // Render the screen
@@ -52,6 +56,7 @@ void showEnd(SDL_Renderer *renderer)
     SDL_RenderPresent(renderer);
   }
   SDL_DestroyTexture(screen);
+  TTF_CloseFont(font);
 
   TTF_Quit();
 }

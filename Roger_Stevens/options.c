@@ -43,7 +43,6 @@ void option(SDL_Renderer *renderer)
     for (int i = 1; i <= ALL_LEVELS; i++)
     {
       getFile(fileName, i);
-
       if(!play(renderer, fileName)) break;
     }
 
@@ -55,16 +54,15 @@ void option(SDL_Renderer *renderer)
     printf("Loading saved game.\n");
     strcpy(fileName, "levels/continue.txt");
 
-    if ( play(renderer, fileName)  && LVL_NUM != 0)
+    // Continue with the levels if you finish the previous level
+    // And it's not a custom level
+    if (play(renderer, fileName)  && LVL_NUM != 0)
     {
       LVL_NUM++;
       for (int i = LVL_NUM; i <= ALL_LEVELS; i++)
       {
         GAME_MODE = PLAY;
-
-        // Get file name
         getFile(fileName, i);
-
         if(!play(renderer, fileName)) break;
       }
     }
@@ -80,7 +78,6 @@ void option(SDL_Renderer *renderer)
     case CUSTOM:
     printf("Play custom level.\n");
     strcpy(fileName, "levels/custom.txt");
-
     play(renderer, fileName);
     if(GAME_MODE == WIN || GAME_MODE == LOSE) showEnd(renderer);
     break;

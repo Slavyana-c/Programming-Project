@@ -35,7 +35,7 @@ Defines the constants for the whole program
     #define SAVE_X              WINDOW_WIDTH / 2
 
 
-    #define SCORE_H             40
+    #define SCORE_H             38
     #define SCORE_W             150
     #define HIGH_SCORE_W        250
     #define SCORE_X             70
