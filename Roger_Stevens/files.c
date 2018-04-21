@@ -80,9 +80,6 @@ void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall
       strcpy(LVL_TEXT, "Long room");
       break;
     }
-
-
-
 }
 
 

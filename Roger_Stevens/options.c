@@ -27,66 +27,62 @@ void getFile(char fileName[20], int i)
 // Selects the appropriate action, depending on the GAME_MODE
 void option(SDL_Renderer *renderer)
 {
-    char fileName[20];
+  char fileName[20];
 
-    switch(GAME_MODE)
+  switch(GAME_MODE)
+  {
+    case PLAY:
+    printf("Startig new game.\n");
+
+    // Zero the score and give full lives
+    MOVES = 0;
+    BOOKS = 0;
+    LIVES = 5;
+
+    // Loop through the levels
+    for (int i = 1; i <= ALL_LEVELS; i++)
     {
-        case PLAY:
-          printf("Startig new game.\n");
+      getFile(fileName, i);
 
-          // Zero the score and give full lives
-          MOVES = 0;
-          BOOKS = 0;
-          LIVES = 5;
-
-          // Loop through the levels
-          for (int i = 1; i <= ALL_LEVELS; i++)
-          {
-              // Get file name
-              getFile(fileName, i);
-
-              if(!play(renderer, fileName)) break;
-          }
-
-          if(GAME_MODE == WIN) ShowWin(renderer);
-          if(GAME_MODE == LOSE) ShowLose(renderer);
-
-          break;
-
-        case CONTINUE:
-            printf("Loading saved game.\n");
-            strcpy(fileName, "levels/continue.txt");
-
-            if ( play(renderer, fileName)  && LVL_NUM != 0)
-            {
-              LVL_NUM++;
-              for (int i = LVL_NUM; i <= ALL_LEVELS; i++)
-              {
-                  GAME_MODE = PLAY;
-
-                  // Get file name
-                  getFile(fileName, i);
-
-                  if(!play(renderer, fileName)) break;
-              }
-            }
-            if(GAME_MODE == WIN) ShowWin(renderer);
-            if(GAME_MODE == LOSE) ShowLose(renderer);
-
-            break;
-
-        case EDIT:
-            printf("Edit custom level.\n");
-            editor(renderer);
-            break;
-
-        case CUSTOM:
-            printf("Play custom level.\n");
-            strcpy(fileName, "levels/custom.txt");
-
-            play(renderer, fileName);
-            if(GAME_MODE == WIN) ShowWin(renderer);
-            if(GAME_MODE == LOSE) ShowLose(renderer);
-            break;
+      if(!play(renderer, fileName)) break;
     }
+
+    if(GAME_MODE == WIN || GAME_MODE == LOSE) showEnd(renderer);
+
+    break;
+
+    case CONTINUE:
+    printf("Loading saved game.\n");
+    strcpy(fileName, "levels/continue.txt");
+
+    if ( play(renderer, fileName)  && LVL_NUM != 0)
+    {
+      LVL_NUM++;
+      for (int i = LVL_NUM; i <= ALL_LEVELS; i++)
+      {
+        GAME_MODE = PLAY;
+
+        // Get file name
+        getFile(fileName, i);
+
+        if(!play(renderer, fileName)) break;
+      }
+    }
+    if(GAME_MODE == WIN || GAME_MODE == LOSE) showEnd(renderer);
+
+    break;
+
+    case EDIT:
+    printf("Edit custom level.\n");
+    editor(renderer);
+    break;
+
+    case CUSTOM:
+    printf("Play custom level.\n");
+    strcpy(fileName, "levels/custom.txt");
+
+    play(renderer, fileName);
+    if(GAME_MODE == WIN || GAME_MODE == LOSE) showEnd(renderer);
+    break;
+  }
 }

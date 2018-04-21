@@ -9,7 +9,7 @@ SRC= main.c options.c game.c files.c editor.c endgame.c texts.c
 # generic build details
 
 CC =     gcc
-CFLAGS = -Wall -O -std=c99
+CFLAGS = -std=c99
 LIBS =   -lSDL2 -lSDL2_image -lSDL2_ttf
 
 

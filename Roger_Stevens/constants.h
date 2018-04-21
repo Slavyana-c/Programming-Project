@@ -34,6 +34,15 @@ Defines the constants for the whole program
     #define BOOKS_X             700
     #define SAVE_X              WINDOW_WIDTH / 2
 
+
+    #define SCORE_H             40
+    #define SCORE_W             150
+    #define HIGH_SCORE_W        250
+    #define SCORE_X             70
+    #define HIGH_SCORE_X        520
+    #define SCORE_MOVES_Y       650
+    #define SCORE_BOOKS_Y       700
+
     // Map size in blocks
     #define MAP_WIDTH_BLOCKS    WIDTH_IN_BLOCKS
     #define MAP_HEIGHT_BLOCKS   (HEIGHT_IN_BLOCKS - 3)

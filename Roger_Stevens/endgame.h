@@ -1,7 +1,7 @@
 
 /*
-options.h
-Prototypes of options.c
+endgame.h
+Prototypes of endgame.c
 */
 
 #include <SDL2/SDL.h>
@@ -9,7 +9,6 @@ Prototypes of options.c
 #ifndef DEF_END
 #define DEF_END
 
-    void ShowWin(SDL_Renderer *renderer);
-    void ShowLose(SDL_Renderer *renderer);
+void showEnd(SDL_Renderer *renderer);
 
 #endif
