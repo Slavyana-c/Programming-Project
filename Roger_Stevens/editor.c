@@ -10,6 +10,7 @@
 #include "files.h"
 #include "globals.h"
 #include "game.h"
+#include "texts.h"
 
 void editor(SDL_Renderer *renderer)
 {
@@ -33,6 +34,7 @@ void editor(SDL_Renderer *renderer)
     strcpy(fileName, "levels/custom.txt");
 
     TTF_Init();
+    TTF_Font * font = TTF_OpenFont("fonts/arial.ttf", 50);
 
     // Set positions
     scenePosition.y = 0;
@@ -141,7 +143,7 @@ void editor(SDL_Renderer *renderer)
 
                         case SDLK_s:
                             saveLevel(map, sceneName, fileName);
-                            savedMessage(renderer);
+                            savedMessage(renderer, font);
                             break;
                 }
                 break;

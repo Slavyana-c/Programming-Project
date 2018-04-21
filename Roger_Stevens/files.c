@@ -27,52 +27,52 @@ void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall
 {
       case 0:
       *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
-      strcpy(LVL_TEXT, "Custom");
+      strcpy(LVL_TEXT, "Custom level");
       break;
 
       case 1:
       *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
-      strcpy(LVL_TEXT, "5");
+      strcpy(LVL_TEXT, "Level: 5");
       break;
 
       case 2:
       *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
-      strcpy(LVL_TEXT, "8");
+      strcpy(LVL_TEXT, "Level: 8");
       break;
 
       case 3:
       *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
-      strcpy(LVL_TEXT, "2");
+      strcpy(LVL_TEXT, "Level: 2");
       break;
 
       case 4:
       *wall = IMG_LoadTexture(renderer, "images/wall.jpg");
-      strcpy(LVL_TEXT, "12");
+      strcpy(LVL_TEXT, "Level: 12");
       break;
 
       case 5:
       *wall = IMG_LoadTexture(renderer, "images/red_wall.jpg");
-      strcpy(LVL_TEXT, "-3");
+      strcpy(LVL_TEXT, "Level: -3");
       break;
 
       case 6:
       *wall = IMG_LoadTexture(renderer, "images/pond_wall.jpg");
-      strcpy(LVL_TEXT, "Pond");
+      strcpy(LVL_TEXT, "Duck Pond");
       break;
 
       case 7:
       *wall = IMG_LoadTexture(renderer, "images/lava_wall.jpg");
-      strcpy(LVL_TEXT, "-666");
+      strcpy(LVL_TEXT, "Level: -666");
       break;
 
       case 8:
       *wall = IMG_LoadTexture(renderer, "images/grass_wall.jpg");
-      strcpy(LVL_TEXT, "999");
+      strcpy(LVL_TEXT, "Level: 999");
       break;
 
       case 9:
       *wall = IMG_LoadTexture(renderer, "images/grass_wall.jpg");
-      strcpy(LVL_TEXT, "???");
+      strcpy(LVL_TEXT, "Level: ???");
       break;
 
       case 10:
@@ -86,9 +86,8 @@ void loadImages(SDL_Renderer *renderer, SDL_Texture **player, SDL_Texture **wall
 }
 
 
-void highScore()
+void highScore(int *bestMoves, int *bestBooks)
 {
-    int bestMoves, bestBooks;
       FILE* file = NULL;
       file = fopen("levels/scores.txt", "r");
       if (file == NULL)
@@ -97,15 +96,15 @@ void highScore()
           return;
       }
 
-      fscanf(file,"%d %d", &bestMoves, &bestBooks);
+      fscanf(file,"%d %d", bestMoves, bestBooks);
       if(GAME_MODE == WIN && LVL_NUM != 0)
       {
-        if(MOVES < bestMoves) bestMoves = MOVES;
-        bestBooks = BOOKS;
+        if(MOVES < *bestMoves) *bestMoves = MOVES;
+        *bestBooks = BOOKS;
       }
       else if(GAME_MODE == LOSE && LVL_NUM != 0)
       {
-        if(BOOKS > bestBooks) bestBooks = BOOKS;
+        if(BOOKS > *bestBooks) *bestBooks = BOOKS;
       }
 
       fclose(file);
@@ -120,8 +119,8 @@ void highScore()
 
 
       //showScore(bestBooks, bestMoves);
-      printf("saved score\n");
-      fprintf(file, "%d %d", bestMoves, bestBooks);
+      //printf("saved score\n");
+      fprintf(file, "%d %d", *bestMoves, *bestBooks);
 
       fclose(file);
 

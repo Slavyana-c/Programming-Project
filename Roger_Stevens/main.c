@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
       // Render the screen
       SDL_RenderClear(renderer);
       SDL_RenderCopy(renderer, menu, NULL, NULL);
-      SDL_RenderPresent(renderer);
+      if(GAME_MODE != QUIT) SDL_RenderPresent(renderer);
     }
 
     // Clear sdl
