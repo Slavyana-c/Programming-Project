@@ -14,14 +14,14 @@ Playing the game
 #include "texts.h"
 
 // Display dying animation and reduce lives
-void playerDead(SDL_Renderer *renderer, SDL_Rect pos, SDL_Texture *playerNow, SDL_Texture *enemy)
+void playerDead(SDL_Renderer *renderer, SDL_Rect pos, SDL_Texture *playerNow, SDL_Texture *tiles)
 {
   for (int i = 0; i < 3; i++)
   {
     SDL_RenderCopy(renderer, playerNow, NULL, &pos);
     SDL_RenderPresent(renderer);
     SDL_Delay(100);
-    SDL_RenderCopy(renderer, enemy, NULL, &pos);
+    SDL_RenderCopy(renderer, tiles, NULL, &pos);
     SDL_RenderPresent(renderer);
     SDL_Delay(100);
   }
@@ -267,7 +267,7 @@ int play(SDL_Renderer *renderer, char fileName[])
     if(map[playerPosition.y][playerPosition.x] == ENEMY)
     {
       map[playerPosition.y][playerPosition.x] = EMPTY;
-      playerDead(renderer, position, playerNow, enemy);
+      playerDead(renderer, position, playerNow, tiles);
 
       if(LIVES == 0)
       {
